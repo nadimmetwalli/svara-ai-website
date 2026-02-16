@@ -53,17 +53,21 @@ const HeroSection = () => {
         </div>
 
        <div className="relative aspect-[4/3] md:aspect-square overflow-hidden rounded-2xl shadow-2xl">
-        <AnimatePresence mode="wait">
-          <motion.img
-            key={currentIndex}
-            src={images[currentIndex]}
-            alt="Certus AI in action"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.8, ease: "easeInOut" }}
-            className="absolute inset-0 w-full h-full object-cover"
-          />
+        <AnimatePresence>
+          {images.map((src, i) => (
+            i === currentIndex && (
+              <motion.img
+                key={i}
+                src={src}
+                alt="Certus AI in action"
+                initial={{ opacity: 0, scale: 1.08 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 1.2, ease: [0.4, 0, 0.2, 1] }}
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+            )
+          ))}
         </AnimatePresence>
         </div>
       </div>
