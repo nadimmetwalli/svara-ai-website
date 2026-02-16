@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import SocialProof from "@/components/SocialProof";
+import TryDemoSection from "@/components/TryDemoSection";
 import ROICalculator from "@/components/ROICalculator";
 import FeaturesGrid from "@/components/FeaturesGrid";
 import HowItWorks from "@/components/HowItWorks";
@@ -19,6 +20,9 @@ const Index = () => {
       </AnimatedSection>
       <AnimatedSection delay={0.1}>
         <SocialProof />
+      </AnimatedSection>
+      <AnimatedSection>
+        <TryDemoSection />
       </AnimatedSection>
       <AnimatedSection>
         <ROICalculator />
