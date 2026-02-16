@@ -1,25 +1,26 @@
 import { Phone, ExternalLink } from "lucide-react";
+import svaraLogo from "@/assets/svara-logo.png";
 
 const Footer = () => {
   return (
     <>
       {/* CTA Banner */}
-      <section className="relative bg-certus-red overflow-hidden py-16 px-4">
-        {/* Dot pattern overlay */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="grid grid-cols-12 gap-4 h-full px-8">
-            {Array.from({ length: 48 }).map((_, i) => (
-              <div key={i} className="w-full aspect-square rounded-full bg-certus-dark/30" />
+      <section className="relative bg-primary overflow-hidden py-16 px-4">
+        {/* Svara logo pattern overlay */}
+        <div className="absolute inset-0 opacity-[0.06]">
+          <div className="grid grid-cols-8 md:grid-cols-12 gap-8 p-8">
+            {Array.from({ length: 96 }).map((_, i) => (
+              <img key={i} src={svaraLogo} alt="" className="w-8 h-8 object-contain" />
             ))}
           </div>
         </div>
         <div className="relative z-10 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold text-primary-foreground mb-6">
             Create your account today and<br />get started for free!
           </h2>
           <a
             href="#"
-            className="inline-flex items-center gap-2 bg-certus-red-light hover:bg-certus-red-light/90 text-white font-semibold px-8 py-3 rounded-full transition-colors shadow-lg"
+            className="inline-flex items-center gap-2 bg-primary-foreground text-primary font-semibold px-8 py-3 rounded-full transition-colors shadow-lg hover:bg-primary-foreground/90"
           >
             Book a demo <ExternalLink className="w-4 h-4" />
           </a>
