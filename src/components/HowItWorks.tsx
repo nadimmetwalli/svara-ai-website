@@ -34,7 +34,7 @@ const HowItWorks = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
           <div>
             <span className="inline-flex items-center gap-1.5 text-xs font-medium border border-primary text-primary rounded-full px-3 py-1 mb-4">
-              🔗 How it Works
+              How it Works
             </span>
             <h2 className="text-3xl md:text-4xl font-extrabold text-foreground">
               Technology that gets<br />you live in 48 hours
