@@ -25,10 +25,10 @@ const ROICalculator = () => {
             <Calculator className="w-3 h-3" /> ROI Calculator
           </span>
           <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-4">
-            Calculate your potential<br />ROI with Certus
+            Calculate your potential<br />ROI with SVARA
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            Use this quick calculator to estimate how much revenue your restaurant loses due to missed phone calls. And how much Certus AI could recover — automatically.
+            Use this quick calculator to estimate how much revenue your restaurant loses due to missed phone calls. And how much SVARA AI could recover — automatically.
           </p>
         </div>
 

@@ -9,7 +9,7 @@ const steps = [
     step: "STEP 1",
     title: "The Handoff",
     img: step1,
-    desc: "Simply set your phone line to forward to your unique Certus number either all day, or just during peak rush hours. You keep your existing phone number. Setup takes less than 15 minutes.",
+    desc: "Simply set your phone line to forward to your unique SVARA number either all day, or just during peak rush hours. You keep your existing phone number. Setup takes less than 15 minutes.",
   },
   {
     icon: MessageSquare,

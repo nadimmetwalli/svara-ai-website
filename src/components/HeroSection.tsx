@@ -59,7 +59,7 @@ const HeroSection = () => {
               <motion.img
                 key={i}
                 src={src}
-                alt="Certus AI in action"
+                alt="SVARA AI in action"
                 initial={{ opacity: 0, scale: 1.08 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}

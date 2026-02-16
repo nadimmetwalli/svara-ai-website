@@ -2,11 +2,11 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { ArrowUpRight } from "lucide-react";
 
 const faqs = [
-  { q: "How will my kitchen be able to receive the orders that Certus AI takes?", a: "Orders are sent directly to your POS system (Toast, Square, Clover, etc.) and print at the bar and kitchen just like a server entered them." },
-  { q: "Can Certus AI process payments over the phone?", a: "Yes, Certus can securely process payments during the call, integrating with your existing payment processor for a seamless experience." },
-  { q: "How will Certus AI handle customers who struggle to speak English?", a: "Certus supports multiple languages including English, Spanish, and more. It handles distinct accents with ease and makes every customer feel understood." },
+  { q: "How will my kitchen be able to receive the orders that SVARA AI takes?", a: "Orders are sent directly to your POS system (Toast, Square, Clover, etc.) and print at the bar and kitchen just like a server entered them." },
+  { q: "Can SVARA AI process payments over the phone?", a: "Yes, SVARA can securely process payments during the call, integrating with your existing payment processor for a seamless experience." },
+  { q: "How will SVARA AI handle customers who struggle to speak English?", a: "SVARA supports multiple languages including English, Spanish, and more. It handles distinct accents with ease and makes every customer feel understood." },
   { q: "How would you provide us with support, and do we need to pay for it?", a: "We provide 24/7 dedicated support at no extra cost. Our team is always available to help with setup, optimization, and any questions you may have." },
-  { q: "Will I be able to see a report of how Certus AI is doing?", a: "Absolutely. Our analytics dashboard gives you real-time insights on calls answered, revenue recovered, peak times, and customer requests." },
+  { q: "Will I be able to see a report of how SVARA AI is doing?", a: "Absolutely. Our analytics dashboard gives you real-time insights on calls answered, revenue recovered, peak times, and customer requests." },
 ];
 
 const FAQSection = () => {
