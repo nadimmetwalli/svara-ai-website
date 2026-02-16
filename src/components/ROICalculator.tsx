@@ -28,7 +28,7 @@ const ROICalculator = () => {
             Calculate your potential<br />ROI with SVARA
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            Use this quick calculator to estimate how much revenue your restaurant loses due to missed phone calls. And how much SVARA AI could recover — automatically.
+            Use this quick calculator to estimate how much revenue your business loses due to missed phone calls. And how much SVARA AI could recover — automatically.
           </p>
         </div>
 
@@ -110,7 +110,7 @@ const ROICalculator = () => {
               </div>
 
               <p className="text-xs opacity-60 mt-6">
-                This is an automated estimate based on average restaurant metrics. Actual results may vary by menu, call volume, and operations.
+                This is an automated estimate based on the average hospitality industry metrics. Actual results may vary by business, call volume, and operations.
               </p>
             </div>
 

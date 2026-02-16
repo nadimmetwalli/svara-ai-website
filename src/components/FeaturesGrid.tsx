@@ -5,7 +5,7 @@ const features = [
   { icon: Zap, title: "POS Order Sync", desc: "Orders are placed directly into your POS/KDS with full accuracy." },
   { icon: TrendingUp, title: "Smart Upselling", desc: "AI suggests pairings, add-ons, and combos to increase AOV automatically." },
   { icon: CalendarDays, title: "Reservations + Event Triage", desc: "SVARA handles bookings, availability, and routes complex queries." },
-  { icon: Globe, title: "Multilingual Support", desc: "English, Spanish, and other languages support helps customers feel understood instantly." },
+  { icon: Globe, title: "Multilingual Support", desc: "English, Estonian, and other languages support helps customers feel understood instantly." },
   { icon: BarChart3, title: "Analytics Dashboard", desc: "Track calls answered, revenue recovered, peak times, and requests." },
 ];
 
@@ -19,7 +19,7 @@ const FeaturesGrid = () => {
               Features
             </span>
             <h2 className="text-3xl md:text-5xl font-extrabold text-card mb-3">
-              Your restaurant's most reliable employee.
+              Your business's most reliable employee.
             </h2>
             <p className="text-sm text-card/60">Always on. Never tired. Perfectly trained. Never calls in sick.</p>
           </div>

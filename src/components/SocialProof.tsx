@@ -7,7 +7,7 @@ const SocialProof = () => {
   return (
     <section className="py-12 border-t border-border overflow-hidden">
       <div className="container mx-auto px-4">
-        <p className="text-sm text-muted-foreground mb-8">Restaurants that trust SVARA AI Everyday</p>
+        <p className="text-sm text-muted-foreground mb-8">Businesses that trust SVARA AI Everyday</p>
       </div>
       <div className="relative">
         {/* Fade edges */}

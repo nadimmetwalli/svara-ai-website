@@ -132,9 +132,6 @@ const TryDemoSection = () => {
                 Book a demo
               </a>
 
-              <p className="text-xs text-primary-foreground/60 text-center mt-3">
-                This demo is trained on a sample pizza menu.
-              </p>
             </div>
           </div>
         </div>

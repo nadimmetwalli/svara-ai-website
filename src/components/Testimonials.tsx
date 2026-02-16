@@ -34,9 +34,9 @@ const Testimonials = () => {
       <div className="container mx-auto grid md:grid-cols-[1fr_2fr] gap-12">
         <div>
           <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-4">
-            Trusted by Restaurant Owners Worldwide
+            Trusted by Business Owners Worldwide
           </h2>
-          <p className="text-muted-foreground mb-8">Verified reviews from restaurants using SVARA in real service conditions.</p>
+          <p className="text-muted-foreground mb-8">Verified reviews from businesses using SVARA in real service conditions.</p>
           <a href="#" className="inline-flex items-center gap-1.5 bg-primary text-primary-foreground rounded-full px-6 py-3 font-semibold text-sm hover:bg-primary/90 transition-colors">
             Book a demo ↗
           </a>
