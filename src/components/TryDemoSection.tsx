@@ -38,24 +38,24 @@ const TryDemoSection = () => {
                     </div>
                   </div>
 
-                  <div className="px-6 pb-8 pt-2 flex flex-col items-center">
+                  <div className="px-6 pb-10 pt-6 flex flex-col items-center">
                     {/* Pizza mascot */}
-                    <div className="w-20 h-20 bg-certus-orange/20 rounded-full flex items-center justify-center mb-5 text-3xl">
+                    <div className="w-20 h-20 bg-certus-orange/20 rounded-full flex items-center justify-center mb-6 text-3xl">
                       🍕
                     </div>
 
                     <p className="text-sm font-semibold text-foreground text-center">Don't Trust The Tech,</p>
-                    <p className="text-sm font-semibold text-primary text-center mb-2">Try It Yourself</p>
-                    <p className="text-xs text-muted-foreground text-center mb-5">
+                    <p className="text-sm font-semibold text-primary text-center mb-3">Try It Yourself</p>
+                    <p className="text-xs text-muted-foreground text-center mb-7">
                       Enter your details and our AI will call you within minutes.
                     </p>
 
                     <input
                       type="text"
                       placeholder="Jane Smith"
-                      className="w-full rounded-xl border border-border bg-secondary px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground mb-3"
+                      className="w-full rounded-xl border border-border bg-secondary px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground mb-4"
                     />
-                    <div className="w-full flex items-center gap-2 rounded-xl border border-border bg-secondary px-4 py-2.5 mb-4">
+                    <div className="w-full flex items-center gap-2 rounded-xl border border-border bg-secondary px-4 py-3 mb-5">
                       <span className="text-sm">🇺🇸</span>
                       <span className="text-xs text-muted-foreground">▾</span>
                       <span className="text-sm text-muted-foreground">+1 Phone Number</span>
@@ -66,7 +66,7 @@ const TryDemoSection = () => {
                   </div>
 
                   {/* Home indicator */}
-                  <div className="flex justify-center pb-2">
+                  <div className="flex justify-center pb-3">
                     <div className="w-[120px] h-[4px] bg-foreground/20 rounded-full" />
                   </div>
                 </div>
