@@ -15,10 +15,10 @@ const FeaturesGrid = () => {
       <div className="container mx-auto">
         <div className="bg-features-gradient rounded-3xl p-8 md:p-16">
           <div className="text-center mb-12">
-            <span className="inline-flex items-center gap-1.5 text-xs font-medium border border-primary/40 text-primary rounded-full px-3 py-1 mb-4">
-              ❤️ Features
+            <span className="inline-flex items-center gap-1.5 text-xs font-medium border border-primary-foreground/40 text-primary-foreground rounded-full px-3 py-1 mb-4">
+              Features
             </span>
-            <h2 className="text-2xl md:text-4xl font-extrabold text-card mb-3">
+            <h2 className="text-3xl md:text-5xl font-extrabold text-card mb-3">
               Your restaurant's most reliable employee.
             </h2>
             <p className="text-sm text-card/60">Always on. Never tired. Perfectly trained. Never calls in sick.</p>
@@ -27,7 +27,7 @@ const FeaturesGrid = () => {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px">
             {features.map((f, i) => (
               <div key={i} className="p-6 md:p-8 border border-dashed border-primary/30 rounded-lg">
-                <f.icon className="w-8 h-8 text-primary mb-4" />
+                <f.icon className="w-8 h-8 text-primary-foreground mb-4" />
                 <h3 className="text-lg font-bold text-card mb-2">{f.title}</h3>
                 <p className="text-sm text-card/60">{f.desc}</p>
               </div>
