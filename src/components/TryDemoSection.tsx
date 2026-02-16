@@ -41,8 +41,8 @@ const TryDemoSection = () => {
 
                   <div className="px-6 pb-10 pt-6 flex flex-col items-center">
                     {/* Svara logo */}
-                    <div className="w-20 h-20 rounded-full flex items-center justify-center mb-6 overflow-hidden">
-                      <img src={svaraLogo} alt="Svara logo" className="w-full h-full object-contain" />
+                    <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                      <img src={svaraLogo} alt="Svara logo" className="w-10 h-10 object-contain" />
                     </div>
 
                     <p className="text-sm font-semibold text-foreground text-center">Don't Trust The Tech,</p>
