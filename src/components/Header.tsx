@@ -21,7 +21,7 @@ const Header = () => {
         {/* Navigation Links */}
         <nav className="hidden md:flex items-center gap-8">
           <a href="#roi" className="text-sm font-medium text-foreground hover:text-primary transition-colors">ROI Calculator</a>
-          <a href="#features" className="text-sm font-medium text-foreground hover:text-primary transition-colors">Careers</a>
+          <a href="#demo" className="text-sm font-medium text-foreground hover:text-primary transition-colors">Demo</a>
           <a href="#blog" className="text-sm font-medium text-foreground hover:text-primary transition-colors">Blogs</a>
         </nav>
 
@@ -49,7 +49,7 @@ const Header = () => {
       {mobileOpen && (
         <div className="md:hidden bg-background border-t border-border px-4 py-6 space-y-4 shadow-lg animate-in fade-in slide-in-from-top-4">
           <a href="#roi" className="block text-sm font-medium" onClick={() => setMobileOpen(false)}>ROI Calculator</a>
-          <a href="#features" className="block text-sm font-medium" onClick={() => setMobileOpen(false)}>Careers</a>
+          <a href="#demo" className="block text-sm font-medium" onClick={() => setMobileOpen(false)}>Demo</a>
           <a href="#blog" className="block text-sm font-medium" onClick={() => setMobileOpen(false)}>Blogs</a>
           <a href="#how-it-works" className="block text-sm font-medium text-primary" onClick={() => setMobileOpen(false)}>How it Works</a>
           <a 

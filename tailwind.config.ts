@@ -90,12 +90,22 @@ export default {
           from: { transform: "translateX(0)" },
           to: { transform: "translateX(-50%)" },
         },
+        "scroll-up": {
+          from: { transform: "translateY(0)" },
+          to: { transform: "translateY(-50%)" },
+        },
+        "scroll-down": {
+          from: { transform: "translateY(-50%)" },
+          to: { transform: "translateY(0)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "count-up": "count-up 0.5s ease-out",
         "marquee": "marquee 30s linear infinite",
+        "scroll-up": "scroll-up 25s linear infinite",
+        "scroll-down": "scroll-down 25s linear infinite",
       },
     },
   },

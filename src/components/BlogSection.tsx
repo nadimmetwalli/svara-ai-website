@@ -33,7 +33,7 @@ const BlogSection = () => {
       <div className="container mx-auto">
         <div className="text-center mb-12">
           <span className="inline-flex items-center gap-1.5 text-xs font-medium border border-primary text-primary rounded-full px-3 py-1 mb-4">
-            📝 Blog
+            Blog
           </span>
           <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-3">
             The Modern<br />Restaurateur's Playbook

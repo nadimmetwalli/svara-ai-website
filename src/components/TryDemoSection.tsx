@@ -9,7 +9,7 @@ const TryDemoSection = () => {
           {/* Left: Try Certus AI - iPhone mockup */}
           <div className="bg-card rounded-3xl border border-border p-8 md:p-12 flex flex-col items-center">
             <span className="self-start inline-flex items-center gap-1.5 text-xs font-medium border border-primary/40 text-primary rounded-full px-3 py-1 mb-8">
-              📋 Try Certus AI
+              Try Certus AI
             </span>
 
             {/* Realistic iPhone frame */}
@@ -78,7 +78,7 @@ const TryDemoSection = () => {
           {/* Right: Live Demo */}
           <div className="bg-card rounded-3xl border border-border p-8 md:p-12 flex flex-col">
             <span className="self-start inline-flex items-center gap-1.5 text-xs font-medium border border-primary/40 text-primary rounded-full px-3 py-1 mb-6">
-              🔊 Live Demo
+              Live Demo
             </span>
 
             <p className="text-lg text-muted-foreground mb-8 max-w-md">
