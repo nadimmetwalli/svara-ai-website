@@ -86,12 +86,12 @@ const TryDemoSection = () => {
             </p>
 
             {/* Audio player card */}
-            <div className="bg-certus-orange rounded-2xl p-6 md:p-8 flex-1 flex flex-col justify-between">
+            <div className="bg-gradient-to-br from-primary to-primary/80 rounded-2xl p-6 md:p-8 flex-1 flex flex-col justify-between">
               <h3 className="text-xl md:text-2xl font-bold text-primary-foreground mb-6">
                 Hear SVARA in Action
               </h3>
 
-              <div className="bg-certus-orange/80 rounded-xl p-5">
+              <div className="bg-primary-foreground/10 rounded-xl p-5">
                 <p className="text-sm text-primary-foreground/80 mb-4">Sample call recording</p>
 
                 {/* Waveform visualization */}
