@@ -8,20 +8,39 @@ import Testimonials from "@/components/Testimonials";
 import BlogSection from "@/components/BlogSection";
 import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
+import AnimatedSection from "@/components/AnimatedSection";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <HeroSection />
-      <SocialProof />
-      <ROICalculator />
-      <FeaturesGrid />
-      <HowItWorks />
-      <Testimonials />
-      <BlogSection />
-      <FAQSection />
-      <Footer />
+      <AnimatedSection>
+        <HeroSection />
+      </AnimatedSection>
+      <AnimatedSection delay={0.1}>
+        <SocialProof />
+      </AnimatedSection>
+      <AnimatedSection>
+        <ROICalculator />
+      </AnimatedSection>
+      <AnimatedSection>
+        <FeaturesGrid />
+      </AnimatedSection>
+      <AnimatedSection>
+        <HowItWorks />
+      </AnimatedSection>
+      <AnimatedSection>
+        <Testimonials />
+      </AnimatedSection>
+      <AnimatedSection>
+        <BlogSection />
+      </AnimatedSection>
+      <AnimatedSection>
+        <FAQSection />
+      </AnimatedSection>
+      <AnimatedSection>
+        <Footer />
+      </AnimatedSection>
     </div>
   );
 };
