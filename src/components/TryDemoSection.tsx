@@ -2,12 +2,12 @@ import { Phone, Play, ArrowUpRight } from "lucide-react";
 
 const TryDemoSection = () => {
   return (
-    <section className="py-20 px-4">
+    <section className="py-20 px-4 bg-primary">
       <div className="container mx-auto">
         <div className="grid md:grid-cols-2 gap-6">
           {/* Left: Try Certus AI - Phone mockup */}
-          <div className="bg-card rounded-3xl border border-border p-8 md:p-12 flex flex-col items-center">
-            <span className="self-start inline-flex items-center gap-1.5 text-xs font-medium border border-primary/40 text-primary rounded-full px-3 py-1 mb-8">
+          <div className="bg-primary-foreground/10 rounded-3xl border border-primary-foreground/20 p-8 md:p-12 flex flex-col items-center">
+            <span className="self-start inline-flex items-center gap-1.5 text-xs font-medium border border-primary-foreground/40 text-primary-foreground rounded-full px-3 py-1 mb-8">
               📋 Try Certus AI
             </span>
 
@@ -55,12 +55,12 @@ const TryDemoSection = () => {
           </div>
 
           {/* Right: Live Demo */}
-          <div className="bg-card rounded-3xl border border-border p-8 md:p-12 flex flex-col">
-            <span className="self-start inline-flex items-center gap-1.5 text-xs font-medium border border-primary/40 text-primary rounded-full px-3 py-1 mb-6">
+          <div className="bg-primary-foreground/10 rounded-3xl border border-primary-foreground/20 p-8 md:p-12 flex flex-col">
+            <span className="self-start inline-flex items-center gap-1.5 text-xs font-medium border border-primary-foreground/40 text-primary-foreground rounded-full px-3 py-1 mb-6">
               🔊 Live Demo
             </span>
 
-            <p className="text-lg text-muted-foreground mb-8 max-w-md">
+            <p className="text-lg text-primary-foreground/70 mb-8 max-w-md">
               Experience how naturally our AI takes orders, answers questions, and upsells — exactly like a trained staff member would.
             </p>
 
