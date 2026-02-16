@@ -1,32 +1,32 @@
 import { Phone, TrendingUp, Award } from "lucide-react";
-import heroChef from "@/assets/hero-chef.jpg";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import recptionistImage1 from "@/assets/receptionist-image-1.jpg";
+import recptionistImage2 from "@/assets/receptionist-image-2.jpg";
+import recptionistImage3 from "@/assets/receptionist-image-3.jpg";
+import restaurantImage1 from "@/assets/restaurant-image-1.jpg";
+
+const images = [restaurantImage1, recptionistImage1, recptionistImage2, recptionistImage3];
 
 const HeroSection = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 3000); //changes every 3 seconds
+    return () => clearInterval(timer);
+  }, []);
   return (
     <section className="py-16 md:py-24 px-4">
       <div className="container mx-auto grid md:grid-cols-2 gap-12 items-center">
         <div>
-          {/* Trust badges */}
-          <div className="flex items-center gap-2 mb-4">
-            <span className="text-xs text-muted-foreground">★ Trustpilot</span>
-          </div>
-          <div className="flex items-center gap-1 mb-4">
-            <span className="text-sm font-semibold text-foreground">Excellent</span>
-            <div className="flex gap-0.5">
-              {[...Array(5)].map((_, i) => (
-                <div key={i} className="w-5 h-5 bg-certus-green flex items-center justify-center rounded-sm">
-                  <span className="text-[10px] text-card font-bold">★</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
           <div className="flex flex-wrap gap-2 mb-8">
             <span className="inline-flex items-center gap-1.5 text-xs font-medium border border-certus-orange text-certus-orange rounded-full px-3 py-1">
-              <TrendingUp className="w-3 h-3" /> Combinator
+              <TrendingUp className="w-3 h-3" /> Prototron
             </span>
             <span className="inline-flex items-center gap-1.5 text-xs font-medium border border-primary text-primary rounded-full px-3 py-1">
-              <Award className="w-3 h-3" /> Best Restaurant Tech
+              <Award className="w-3 h-3" /> Best Hospitality Tech
             </span>
             <span className="inline-flex items-center gap-1.5 text-xs font-medium border border-primary text-primary rounded-full px-3 py-1">
               <TrendingUp className="w-3 h-3" /> Top AI Startup
@@ -35,11 +35,11 @@ const HeroSection = () => {
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground leading-[1.1] mb-6">
             Turn Every Phone Call Into Revenue with{" "}
-            <span className="text-primary">Certus AI.</span>
+            <span className="text-primary">SVARA AI.</span>
           </h1>
 
           <p className="text-base md:text-lg text-muted-foreground max-w-lg mb-8">
-            Meet the first AI Phone Agent that sounds like your best employee. It answers 24/7, takes complex orders directly into POS and never puts a guest on hold.
+            Meet the first multilingual AI Phone Agent that sounds like your best employee. It answers 24/7, takes complex orders directly into POS and never puts a guest on hold.
           </p>
 
           <div className="flex flex-wrap gap-4">
@@ -52,12 +52,19 @@ const HeroSection = () => {
           </div>
         </div>
 
-        <div className="relative">
-          <img
-            src={heroChef}
-            alt="Restaurant chef using Certus AI"
-            className="rounded-2xl w-full h-auto object-cover shadow-2xl"
+       <div className="relative aspect-[4/3] md:aspect-square overflow-hidden rounded-2xl shadow-2xl">
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={currentIndex}
+            src={images[currentIndex]}
+            alt="Certus AI in action"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+            className="absolute inset-0 w-full h-full object-cover"
           />
+        </AnimatePresence>
         </div>
       </div>
     </section>

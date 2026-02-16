@@ -14,19 +14,6 @@ const Testimonials = () => {
     <section className="py-20 px-4">
       <div className="container mx-auto grid md:grid-cols-[1fr_2fr] gap-12">
         <div>
-          <div className="flex items-center gap-2 mb-2">
-            <span className="text-xs text-muted-foreground">★ Trustpilot</span>
-          </div>
-          <div className="flex items-center gap-1 mb-4">
-            <span className="text-sm font-semibold text-foreground">Excellent</span>
-            <div className="flex gap-0.5">
-              {[...Array(5)].map((_, i) => (
-                <div key={i} className="w-5 h-5 bg-certus-green flex items-center justify-center rounded-sm">
-                  <span className="text-[10px] text-card font-bold">★</span>
-                </div>
-              ))}
-            </div>
-          </div>
           <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-4">
             Trusted by Restaurant Owners Worldwide
           </h2>
