@@ -127,7 +127,7 @@ const TryDemoSection = () => {
 
               <a
                 href="#"
-                className="mt-6 block text-center bg-roi-card text-primary-foreground rounded-full py-3 font-semibold text-sm hover:opacity-90 transition-opacity"
+                className="mt-6 block text-center bg-primary-foreground text-primary rounded-full py-3 font-semibold text-sm hover:bg-primary-foreground/90 transition-opacity"
               >
                 Book a demo
               </a>
