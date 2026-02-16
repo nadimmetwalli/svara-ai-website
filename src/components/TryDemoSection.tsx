@@ -6,10 +6,10 @@ const TryDemoSection = () => {
     <section id="demo" className="py-20 px-4">
       <div className="container mx-auto">
         <div className="grid md:grid-cols-2 gap-6">
-          {/* Left: Try Certus AI - iPhone mockup */}
+          {/* Left: Try SVARA AI - iPhone mockup */}
           <div className="bg-card rounded-3xl border border-border p-8 md:p-12 flex flex-col items-center">
             <span className="self-start inline-flex items-center gap-1.5 text-xs font-medium border border-primary/40 text-primary rounded-full px-3 py-1 mb-8">
-              Try Certus AI
+              Try SVARA AI
             </span>
 
             {/* Realistic iPhone frame */}
@@ -88,7 +88,7 @@ const TryDemoSection = () => {
             {/* Audio player card */}
             <div className="bg-certus-orange rounded-2xl p-6 md:p-8 flex-1 flex flex-col justify-between">
               <h3 className="text-xl md:text-2xl font-bold text-primary-foreground mb-6">
-                Hear Certus in Action
+                Hear SVARA in Action
               </h3>
 
               <div className="bg-certus-orange/80 rounded-xl p-5">

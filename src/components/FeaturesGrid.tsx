@@ -4,7 +4,7 @@ const features = [
   { icon: Clock, title: "24/7 Call Answering", desc: "Never miss a single order again even during rush hour." },
   { icon: Zap, title: "POS Order Sync", desc: "Orders are placed directly into your POS/KDS with full accuracy." },
   { icon: TrendingUp, title: "Smart Upselling", desc: "AI suggests pairings, add-ons, and combos to increase AOV automatically." },
-  { icon: CalendarDays, title: "Reservations + Event Triage", desc: "Certus handles bookings, availability, and routes complex queries." },
+  { icon: CalendarDays, title: "Reservations + Event Triage", desc: "SVARA handles bookings, availability, and routes complex queries." },
   { icon: Globe, title: "Multilingual Support", desc: "English, Spanish, and other languages support helps customers feel understood instantly." },
   { icon: BarChart3, title: "Analytics Dashboard", desc: "Track calls answered, revenue recovered, peak times, and requests." },
 ];

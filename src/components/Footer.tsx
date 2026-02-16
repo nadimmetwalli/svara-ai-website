@@ -42,12 +42,10 @@ const Footer = () => {
             {/* Logo & description */}
             <div className="max-w-sm">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 text-certus-dark/50">
-                  <Phone className="w-10 h-10" />
-                </div>
-                <span className="text-4xl font-light text-certus-dark/50 tracking-tight">Certus</span>
+                <img src={svaraLogo} alt="SVARA Logo" className="w-10 h-10 object-contain" />
+                <span className="text-4xl font-light text-foreground/50 tracking-tight">SVARA AI</span>
               </div>
-              <p className="text-sm text-certus-dark/60 leading-relaxed">
+              <p className="text-sm text-foreground/60 leading-relaxed">
                 Built to solve the problem of missed calls and lost revenue for restaurants everywhere.
               </p>
             </div>
@@ -73,7 +71,7 @@ const Footer = () => {
 
           {/* Bottom bar */}
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-6 border-t border-certus-dark/10">
-            <p className="text-xs text-certus-dark/50">Copyright © 2026 Certus Inc.</p>
+            <p className="text-xs text-foreground/50">Copyright © 2026 SVARA Inc.</p>
             <div className="flex items-center gap-3">
               {/* X / Twitter */}
               <a href="#" className="w-8 h-8 rounded-full border border-certus-red/40 text-certus-red flex items-center justify-center hover:bg-certus-red hover:text-white transition-colors">
