@@ -43,7 +43,7 @@ const HeroSection = () => {
           </p>
 
           <div className="flex flex-wrap gap-4">
-            <a href="#" className="inline-flex items-center gap-2 bg-primary text-primary-foreground rounded-full px-6 py-3 font-semibold text-sm hover:bg-primary/90 transition-colors">
+            <a href="#demo" className="inline-flex items-center gap-2 bg-primary text-primary-foreground rounded-full px-6 py-3 font-semibold text-sm hover:bg-primary/90 transition-colors">
               <Phone className="w-4 h-4" /> Hear It Live
             </a>
             <a href="#roi" className="inline-flex items-center gap-2 border border-primary text-primary rounded-full px-6 py-3 font-semibold text-sm hover:bg-primary/5 transition-colors">
