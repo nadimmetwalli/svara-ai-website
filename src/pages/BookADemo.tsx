@@ -91,17 +91,24 @@ const BookADemo = () => {
     }
 
     setIsSubmitting(true);
-    try {
-      const { error } = await supabase.from("demo_bookings").insert({
-        business_type: answers[0] || null,
-        locations: answers[1] || null,
-        challenge: answers[2] || null,
-        name: contactForm.name.trim().slice(0, 100),
-        email: contactForm.email.trim().slice(0, 255),
-        phone: contactForm.phone.trim().slice(0, 30) || null,
-      });
+    const bookingData = {
+      business_type: answers[0] || null,
+      locations: answers[1] || null,
+      challenge: answers[2] || null,
+      name: contactForm.name.trim().slice(0, 100),
+      email: contactForm.email.trim().slice(0, 255),
+      phone: contactForm.phone.trim().slice(0, 30) || null,
+    };
 
+    try {
+      // Save to database
+      const { error } = await supabase.from("demo_bookings").insert(bookingData);
       if (error) throw error;
+
+      // Send email notification (don't block on failure)
+      supabase.functions.invoke("send-demo-booking", {
+        body: bookingData,
+      }).catch((err) => console.error("Email send failed:", err));
 
       setIsSubmitted(true);
       toast.success("Demo booked! We'll be in touch shortly.");
