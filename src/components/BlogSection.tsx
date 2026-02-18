@@ -6,23 +6,23 @@ import blog3 from "@/assets/blog3.jpg";
 const posts = [
   {
     img: blog1,
-    tags: ["Industry Trends", "AI & Restaurant", "Marketing & Strategy"],
-    title: "Best practices for running a successful restaurant in 2026",
-    excerpt: "Running a restaurant in 2026 takes a new playbook. Learn what successful operators are doing right now to increase orders, cut stress,...",
+    tags: ["Industry Trends", "AI & Hospitality", "Marketing & Strategy"],
+    title: "Best practices for running a successful hospitality business in 2026",
+    excerpt: "Running a hospitality business in 2026 takes a new playbook. Learn what successful operators are doing right now to increase orders, cut stress,...",
     date: "February 11, 2026",
   },
   {
     img: blog2,
     tags: ["Industry Trends"],
-    title: "3 Restaurant tech upgrades you need to know about in 2026",
-    excerpt: "Restaurant tech in 2026 is practical, not flashy. Here are three upgrades restaurants are using to capture more orders, cut costs, and run more...",
+    title: "3 Hospitality tech upgrades you need to know about in 2026",
+    excerpt: "Hospitality tech in 2026 is practical, not flashy. Here are three upgrades businesses are using to capture more orders, cut costs, and run more...",
     date: "February 11, 2026",
   },
   {
     img: blog3,
-    tags: ["AI & Restaurant"],
-    title: "Testing and launching your restaurant AI assistant: A practical guide",
-    excerpt: "A practical guide to testing and launching an AI assistant for restaurants",
+    tags: ["AI & Hospitality"],
+    title: "Testing and launching your business AI assistant: A practical guide",
+    excerpt: "A practical guide to testing and launching an AI assistant for your business",
     date: "February 5, 2026",
   },
 ];
