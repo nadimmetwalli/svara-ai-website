@@ -38,7 +38,7 @@ const HeroSection = () => {
           </h1>
 
           <p className="text-base md:text-lg text-muted-foreground max-w-lg mb-8">
-            Meet the first multilingual AI Phone Agent that sounds like your best employee. It answers 24/7, takes complex orders directly into POS and never puts a guest on hold.
+            Meet the first multilingual AI Phone Agent that sounds like your best employee. Give your business a 24/7 AI voice agent that answers every call in any language—no hold times, no missed revenue.
           </p>
 
           <div className="flex flex-wrap gap-4">
