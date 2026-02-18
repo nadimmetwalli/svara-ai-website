@@ -36,7 +36,7 @@ const BlogSection = () => {
             Blog
           </span>
           <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-3">
-            The Modern<br />Restaurateur's Playbook
+            The Modern<br />Hotelier's Playbook
           </h2>
           <p className="text-muted-foreground">Industry insights on labor costs, front of house efficiency,<br />and the future of hospitality</p>
         </div>
