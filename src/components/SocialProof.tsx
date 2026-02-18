@@ -11,18 +11,26 @@ const logos = [
 ];
 
 const SocialProof = () => {
+  const duped = [...logos, ...logos];
+
   return (
     <section className="py-12 border-t border-border overflow-hidden">
       <div className="container mx-auto px-4">
         <p className="text-sm text-muted-foreground mb-8">Backed by:</p>
-        <div className="flex items-center justify-center gap-10 md:gap-16 flex-wrap">
-          {logos.map((logo, i) => (
-            <img
-              key={i}
-              src={logo.src}
-              alt={logo.alt}
-              className="h-10 md:h-14 w-auto object-contain opacity-70 grayscale hover:grayscale-0 hover:opacity-100 transition-all"
-            />
+      </div>
+      <div className="relative">
+        <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10" />
+        <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10" />
+
+        <div className="flex animate-marquee whitespace-nowrap items-center">
+          {duped.map((logo, i) => (
+            <div key={i} className="mx-8 md:mx-12 shrink-0 flex items-center justify-center w-32 h-12">
+              <img
+                src={logo.src}
+                alt={logo.alt}
+                className="max-h-full max-w-full object-contain"
+              />
+            </div>
           ))}
         </div>
       </div>
