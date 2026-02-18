@@ -18,7 +18,7 @@ const ROICalculator = () => {
   const totalLocationLoss = monthlyLoss * locations;
 
   return (
-    <section id="roi" className="py-20 px-4">
+    <section id="roi" className="py-20 px-4 bg-roi-section">
       <div className="container mx-auto">
         <div className="text-center mb-12">
           <span className="inline-flex items-center gap-1.5 text-xs font-medium border border-primary text-primary rounded-full px-3 py-1 mb-4">

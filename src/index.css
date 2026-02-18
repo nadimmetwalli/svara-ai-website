@@ -75,6 +75,21 @@
   .bg-roi-card {
     background: linear-gradient(135deg, hsl(294 75% 20%), hsl(294 75% 14%));
   }
+  .bg-roi-section {
+    position: relative;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 40%, hsl(294 60% 80% / 0.35) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 30% at 55% 35%, hsl(294 80% 70% / 0.2) 0%, transparent 60%),
+      hsl(var(--background));
+  }
+  .bg-roi-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='52' viewBox='0 0 60 52' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0 L60 17.32 L60 51.96 L30 34.64 L0 51.96 L0 17.32 Z' fill='none' stroke='%23c4a0c8' stroke-width='0.5' opacity='0.25'/%3E%3C/svg%3E");
+    background-size: 60px 52px;
+    pointer-events: none;
+  }
   .badge-glow:hover {
     box-shadow: 0 0 20px hsl(348 83% 47% / 0.3);
   }
