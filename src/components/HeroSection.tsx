@@ -34,7 +34,7 @@ const HeroSection = () => {
           </div>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground leading-[1.1] mb-6">
-            <span className="text-primary">SVARA AI:</span> The Multilingual AI Voice Agent for the Hospitality Industry
+            <span className="text-primary">SVARA:</span> The Multilingual AI Voice Agent for the Hospitality Industry
           </h1>
 
           <p className="text-base md:text-lg text-muted-foreground max-w-lg mb-8">
