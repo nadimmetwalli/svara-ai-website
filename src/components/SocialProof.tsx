@@ -24,11 +24,11 @@ const SocialProof = () => {
 
         <div className="flex animate-marquee whitespace-nowrap items-center">
           {duped.map((logo, i) => (
-            <div key={i} className="mx-8 md:mx-12 shrink-0 flex items-center justify-center w-32 h-12">
+            <div key={i} className={`mx-8 md:mx-12 shrink-0 flex items-center justify-center h-12 ${logo.alt === "Igniter" ? "w-40" : "w-32"}`}>
               <img
                 src={logo.src}
                 alt={logo.alt}
-                className="max-h-full max-w-full object-contain"
+                className={`max-w-full object-contain ${logo.alt === "Igniter" ? "max-h-[3.5rem]" : "max-h-full"}`}
               />
             </div>
           ))}
