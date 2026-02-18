@@ -1,4 +1,5 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 
 const faqs = [
@@ -22,9 +23,9 @@ const FAQSection = () => {
           </p>
           <p className="text-sm font-semibold text-foreground mb-2">Still have questions?</p>
           <p className="text-sm text-muted-foreground mb-6">Get in touch now and we can help you with all your queries right away</p>
-          <a href="#" className="inline-flex items-center gap-1.5 bg-primary text-primary-foreground rounded-full px-6 py-3 font-semibold text-sm hover:bg-primary/90 transition-colors">
+          <Link to="/book-a-demo" className="inline-flex items-center gap-1.5 bg-primary text-primary-foreground rounded-full px-6 py-3 font-semibold text-sm hover:bg-primary/90 transition-colors">
             Book a demo <ArrowUpRight className="w-3.5 h-3.5" />
-          </a>
+          </Link>
         </div>
 
         <Accordion type="single" collapsible className="space-y-3">

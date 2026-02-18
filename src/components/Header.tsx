@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import svaraLogo from "@/assets/svara-logo.png";
 
@@ -30,9 +31,9 @@ const Header = () => {
           <a href="#how-it-works" className="text-sm font-medium text-primary border border-primary rounded-full px-5 py-2 hover:bg-primary/5 transition-colors">
             How it Works
           </a>
-          <a href="#" className="inline-flex items-center gap-1.5 text-sm font-medium bg-primary text-primary-foreground rounded-full px-5 py-2.5 hover:bg-primary/90 transition-colors">
+          <Link to="/book-a-demo" className="inline-flex items-center gap-1.5 text-sm font-medium bg-primary text-primary-foreground rounded-full px-5 py-2.5 hover:bg-primary/90 transition-colors">
             Book a demo <ArrowUpRight className="w-3.5 h-3.5" />
-          </a>
+          </Link>
         </div>
 
         {/* Mobile Menu Button */}
@@ -52,13 +53,13 @@ const Header = () => {
           <a href="#demo" className="block text-sm font-medium" onClick={() => setMobileOpen(false)}>Demo</a>
           <a href="#blog" className="block text-sm font-medium" onClick={() => setMobileOpen(false)}>Blogs</a>
           <a href="#how-it-works" className="block text-sm font-medium text-primary" onClick={() => setMobileOpen(false)}>How it Works</a>
-          <a 
-            href="#" 
+          <Link 
+            to="/book-a-demo" 
             className="inline-flex items-center justify-center gap-1.5 text-sm font-medium bg-primary text-primary-foreground rounded-full px-5 py-2.5 w-full"
             onClick={() => setMobileOpen(false)}
           >
             Book a demo <ArrowUpRight className="w-3.5 h-3.5" />
-          </a>
+          </Link>
         </div>
       )}
     </header>
