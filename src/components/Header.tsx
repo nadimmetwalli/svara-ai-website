@@ -10,14 +10,14 @@ const Header = () => {
     <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="container mx-auto flex items-center justify-between py-4 px-4">
         
-        <a href="#" className="flex items-center gap-2">
+        <Link to="/" className="flex items-center gap-2">
           <img 
             src={svaraLogo} 
             alt="Svara Logo" 
             className="w-8 h-8 object-contain" 
           />
           <span className="text-xl font-bold text-primary">SVARA</span>
-        </a>
+        </Link>
 
         {/* Navigation Links */}
         <nav className="hidden md:flex items-center gap-8">
