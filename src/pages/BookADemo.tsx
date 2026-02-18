@@ -20,7 +20,7 @@ const painPoints = [
 const steps = [
   {
     id: 1,
-    question: "Do you own a Restaurant, QSR or Takeaway?",
+    question: "Do you own a business in the hospitality industry?",
     options: [
       { label: "Yes", value: "yes" },
       { label: "No, I own another kind of business", value: "no" },
@@ -228,10 +228,10 @@ const BookADemo = () => {
 
             <div className="relative z-10">
               <h2 className="text-2xl md:text-3xl font-extrabold text-primary-foreground mb-3">
-                We work with restaurants that<br />can't afford to miss calls
-              </h2>
-              <p className="text-sm text-primary-foreground/70 mb-10 max-w-lg mx-auto">
-                From busy take-out counters to multi-location chains — SVARA supports restaurants where reliability matters.
+              We work with businesses that<br />can't afford to miss calls
+            </h2>
+            <p className="text-sm text-primary-foreground/70 mb-10 max-w-lg mx-auto">
+              From busy take-out counters to multi-location chains — SVARA supports businesses where reliability matters.
               </p>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {features.map((f, i) => (
