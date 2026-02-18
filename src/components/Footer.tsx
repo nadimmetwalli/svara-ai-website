@@ -1,4 +1,5 @@
 import { Phone, ExternalLink } from "lucide-react";
+import { Link } from "react-router-dom";
 import svaraLogo from "@/assets/svara-logo.png";
 
 const Footer = () => {
@@ -18,12 +19,12 @@ const Footer = () => {
           <h2 className="text-2xl md:text-3xl font-bold text-primary-foreground mb-6">
             Create your account today and<br />get started for free!
           </h2>
-          <a
-            href="#"
+          <Link
+            to="/book-a-demo"
             className="inline-flex items-center gap-2 bg-primary-foreground text-primary font-semibold px-8 py-3 rounded-full transition-colors shadow-lg hover:bg-primary-foreground/90"
           >
             Book a demo <ExternalLink className="w-4 h-4" />
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -63,7 +64,7 @@ const Footer = () => {
                 <h4 className="text-sm font-semibold text-certus-red mb-4">Resources</h4>
                 <div className="space-y-2 text-sm text-certus-dark/70">
                   <a href="#blog" className="block hover:text-certus-dark transition-colors">Blog</a>
-                  <a href="#" className="block hover:text-certus-dark transition-colors">Book a demo</a>
+                  <Link to="/book-a-demo" className="block hover:text-certus-dark transition-colors">Book a demo</Link>
                 </div>
               </div>
             </div>

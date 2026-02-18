@@ -1,4 +1,5 @@
 import { Phone, Play, ArrowUpRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import svaraLogo from "@/assets/svara-logo.png";
 
 const TryDemoSection = () => {
@@ -125,12 +126,12 @@ const TryDemoSection = () => {
                 </div>
               </div>
 
-              <a
-                href="#"
+              <Link
+                to="/book-a-demo"
                 className="mt-6 block text-center bg-primary-foreground text-primary rounded-full py-3 font-semibold text-sm hover:bg-primary-foreground/90 transition-opacity"
               >
                 Book a demo
-              </a>
+              </Link>
 
             </div>
           </div>
@@ -138,12 +139,12 @@ const TryDemoSection = () => {
 
         {/* Bottom CTA */}
         <div className="text-center mt-10">
-          <a
-            href="#"
+          <Link
+            to="/book-a-demo"
             className="inline-flex items-center gap-1.5 bg-primary text-primary-foreground rounded-full px-8 py-3 font-semibold text-sm hover:bg-primary/90 transition-colors"
           >
             Book a demo <ArrowUpRight className="w-3.5 h-3.5" />
-          </a>
+          </Link>
         </div>
       </div>
     </section>
