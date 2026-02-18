@@ -37,7 +37,7 @@ const HowItWorks = () => {
               How it Works
             </span>
             <h2 className="text-3xl md:text-4xl font-extrabold text-foreground">
-              Technology that gets<br />you live in 48 hours
+              Get live and connected<br />in less than 48 hours
             </h2>
             <p className="text-muted-foreground mt-3 max-w-md">
               No new hardware. No training staff. We integrate directly into the systems you already use.
