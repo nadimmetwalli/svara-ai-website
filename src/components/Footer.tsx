@@ -46,7 +46,7 @@ const Footer = () => {
                 <span className="text-4xl font-light text-foreground/50 tracking-tight">SVARA AI</span>
               </div>
               <p className="text-sm text-foreground/60 leading-relaxed">
-                Built to solve the problem of missed calls and lost revenue for restaurants everywhere.
+                Built to solve the problem of missed calls and lost revenue for businesses everywhere.
               </p>
             </div>
 

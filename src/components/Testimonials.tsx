@@ -3,12 +3,12 @@ import { Star } from "lucide-react";
 const columnA = [
   { name: "Art Ingemi", text: "I highly recommend this company to service your customers phone calls." },
   { name: "Samantha Noble", text: "We rely a lot on phone orders for takeout, and with just one girl handling both calls and in-person customers, things used to get pretty hectic. Since we got SVARA AI, those issues have pretty much vanished." },
-  { name: "Lucas Norman", text: "I've been using this AI system for the past 4 weeks at my pizza takeaway and delivery restaurant. Our customer base is mostly older and they prefer to call in their orders." },
+  { name: "Lucas Norman", text: "I've been using this AI system for the past 4 weeks at my pizza takeaway and delivery business. Our customer base is mostly older and they prefer to call in their orders." },
 ];
 
 const columnB = [
   { name: "Rico Fries LLC", text: "I have used this company for about two months now and the results have been great from my experience. The customer service and support has been 10 out of 10 for me." },
-  { name: "Jean V", text: "The program is very helpful with our restaurant and event venue where we handle tons of calls each day. The dashboard is pretty straight-forward and easy to use." },
+  { name: "Jean V", text: "The program is very helpful with our hotel and event venue where we handle tons of calls each day. The dashboard is pretty straight-forward and easy to use." },
   { name: "Michael Hamilton", text: "I've had a fantastic experience with SVARA AI. The AI makes me thousands of dollars a month from upselling and is saving my front of house dozens of hours." },
 ];
 
