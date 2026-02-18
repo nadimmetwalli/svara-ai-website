@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowUpRight, CheckSquare, Phone, TrendingUp, Award } from "lucide-react";
+import { ArrowUpRight, CheckSquare, Phone, TrendingUp, Award, CheckCircle, Loader2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 import svaraLogo from "@/assets/svara-logo.png";
 import Header from "@/components/Header";
 import BlogSection from "@/components/BlogSection";
@@ -63,6 +65,8 @@ const BookADemo = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<Record<number, string>>({});
   const [contactForm, setContactForm] = useState({ name: "", email: "", phone: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSelect = (value: string) => {
     setAnswers({ ...answers, [currentStep]: value });
@@ -74,9 +78,38 @@ const BookADemo = () => {
     }
   };
 
-  const handleSubmit = () => {
-    // placeholder for form submission
-    alert("Thank you! We'll be in touch shortly.");
+  const handleSubmit = async () => {
+    if (!contactForm.name.trim() || !contactForm.email.trim()) {
+      toast.error("Please fill in your name and email.");
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(contactForm.email.trim())) {
+      toast.error("Please enter a valid email address.");
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      const { error } = await supabase.from("demo_bookings").insert({
+        business_type: answers[0] || null,
+        locations: answers[1] || null,
+        challenge: answers[2] || null,
+        name: contactForm.name.trim().slice(0, 100),
+        email: contactForm.email.trim().slice(0, 255),
+        phone: contactForm.phone.trim().slice(0, 30) || null,
+      });
+
+      if (error) throw error;
+
+      setIsSubmitted(true);
+      toast.success("Demo booked! We'll be in touch shortly.");
+    } catch (err) {
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const step = steps[currentStep];
@@ -126,94 +159,109 @@ const BookADemo = () => {
               <img src={svaraLogo} alt="SVARA" className="w-10 h-10 object-contain" />
             </div>
 
-            <AnimatePresence mode="wait">
+            {isSubmitted ? (
               <motion.div
-                key={currentStep}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.3 }}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="flex flex-col items-center text-center py-10"
               >
-                {step.isContact ? (
-                  /* Contact form step */
-                  <div>
-                    <p className="text-sm text-muted-foreground mb-2">
-                      <span className="inline-flex items-center justify-center w-5 h-5 rounded bg-foreground text-background text-xs font-bold mr-2">{step.id}</span>
-                      {step.question}
-                    </p>
-                    <div className="space-y-4 mt-6">
-                      <input
-                        type="text"
-                        placeholder="Full Name"
-                        value={contactForm.name}
-                        onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
-                        className="w-full rounded-xl border border-border bg-secondary px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground"
-                      />
-                      <input
-                        type="email"
-                        placeholder="Email Address"
-                        value={contactForm.email}
-                        onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
-                        className="w-full rounded-xl border border-border bg-secondary px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground"
-                      />
-                      <input
-                        type="tel"
-                        placeholder="Phone Number"
-                        value={contactForm.phone}
-                        onChange={(e) => setContactForm({ ...contactForm, phone: e.target.value })}
-                        className="w-full rounded-xl border border-border bg-secondary px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground"
-                      />
-                    </div>
-                  </div>
-                ) : (
-                  /* Question step */
-                  <div>
-                    <p className="text-sm text-muted-foreground mb-4">
-                      <span className="inline-flex items-center justify-center w-5 h-5 rounded bg-foreground text-background text-xs font-bold mr-2">{step.id}</span>
-                      {step.question}
-                    </p>
-                    <div className="space-y-3">
-                      {step.options?.map((opt, i) => (
-                        <button
-                          key={opt.value}
-                          onClick={() => handleSelect(opt.value)}
-                          className={`w-full text-left px-4 py-3 rounded-xl border text-sm font-medium transition-colors ${
-                            answers[currentStep] === opt.value
-                              ? "border-foreground bg-foreground text-background"
-                              : "border-border bg-card text-foreground hover:border-muted-foreground"
-                          }`}
-                        >
-                          <span className="inline-flex items-center justify-center w-5 h-5 rounded border border-current text-[10px] font-bold mr-3">
-                            {String.fromCharCode(65 + i)}
-                          </span>
-                          {opt.label}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
+                <CheckCircle className="w-16 h-16 text-primary mb-4" />
+                <h3 className="text-xl font-bold text-foreground mb-2">Demo Booked!</h3>
+                <p className="text-sm text-muted-foreground">Thank you, {contactForm.name}! We'll reach out to you shortly at {contactForm.email}.</p>
               </motion.div>
-            </AnimatePresence>
+            ) : (
+              <>
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentStep}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {step.isContact ? (
+                      <div>
+                        <p className="text-sm text-muted-foreground mb-2">
+                          <span className="inline-flex items-center justify-center w-5 h-5 rounded bg-foreground text-background text-xs font-bold mr-2">{step.id}</span>
+                          {step.question}
+                        </p>
+                        <div className="space-y-4 mt-6">
+                          <input
+                            type="text"
+                            placeholder="Full Name"
+                            value={contactForm.name}
+                            onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
+                            className="w-full rounded-xl border border-border bg-secondary px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground"
+                          />
+                          <input
+                            type="email"
+                            placeholder="Email Address"
+                            value={contactForm.email}
+                            onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
+                            className="w-full rounded-xl border border-border bg-secondary px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground"
+                          />
+                          <input
+                            type="tel"
+                            placeholder="Phone Number"
+                            value={contactForm.phone}
+                            onChange={(e) => setContactForm({ ...contactForm, phone: e.target.value })}
+                            className="w-full rounded-xl border border-border bg-secondary px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground"
+                          />
+                        </div>
+                      </div>
+                    ) : (
+                      <div>
+                        <p className="text-sm text-muted-foreground mb-4">
+                          <span className="inline-flex items-center justify-center w-5 h-5 rounded bg-foreground text-background text-xs font-bold mr-2">{step.id}</span>
+                          {step.question}
+                        </p>
+                        <div className="space-y-3">
+                          {step.options?.map((opt, i) => (
+                            <button
+                              key={opt.value}
+                              onClick={() => handleSelect(opt.value)}
+                              className={`w-full text-left px-4 py-3 rounded-xl border text-sm font-medium transition-colors ${
+                                answers[currentStep] === opt.value
+                                  ? "border-foreground bg-foreground text-background"
+                                  : "border-border bg-card text-foreground hover:border-muted-foreground"
+                              }`}
+                            >
+                              <span className="inline-flex items-center justify-center w-5 h-5 rounded border border-current text-[10px] font-bold mr-3">
+                                {String.fromCharCode(65 + i)}
+                              </span>
+                              {opt.label}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </motion.div>
+                </AnimatePresence>
 
-            <button
-              onClick={step.isContact ? handleSubmit : handleNext}
-              disabled={!step.isContact && !answers[currentStep]}
-              className="w-full mt-8 bg-primary text-primary-foreground rounded-full py-3 font-semibold text-sm hover:bg-primary/90 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
-            >
-              {step.isContact ? "SUBMIT" : "NEXT"}
-            </button>
+                <button
+                  onClick={step.isContact ? handleSubmit : handleNext}
+                  disabled={(!step.isContact && !answers[currentStep]) || isSubmitting}
+                  className="w-full mt-8 bg-primary text-primary-foreground rounded-full py-3 font-semibold text-sm hover:bg-primary/90 transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" /> Submitting...
+                    </>
+                  ) : step.isContact ? "SUBMIT" : "NEXT"}
+                </button>
 
-            {/* Step indicator */}
-            <div className="flex justify-center gap-2 mt-6">
-              {steps.map((_, i) => (
-                <div
-                  key={i}
-                  className={`w-2 h-2 rounded-full transition-colors ${
-                    i === currentStep ? "bg-primary" : "bg-border"
-                  }`}
-                />
-              ))}
-            </div>
+                <div className="flex justify-center gap-2 mt-6">
+                  {steps.map((_, i) => (
+                    <div
+                      key={i}
+                      className={`w-2 h-2 rounded-full transition-colors ${
+                        i === currentStep ? "bg-primary" : "bg-border"
+                      }`}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
           </div>
         </div>
       </section>
