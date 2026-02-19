@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowUpRight, CheckSquare, Phone, TrendingUp, Award, CheckCircle, Loader2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -62,6 +62,10 @@ const features = [
 ];
 
 const BookADemo = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<Record<number, string>>({});
   const [contactForm, setContactForm] = useState({ name: "", email: "", phone: "" });
