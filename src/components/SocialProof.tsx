@@ -2,12 +2,14 @@ import logoPrototron from "@/assets/logo-prototron.png";
 import logoTaltech from "@/assets/logo-taltech.png";
 import logoSwedbank from "@/assets/logo-swedbank.png";
 import logoIgniter from "@/assets/logo-igniter.png";
+import logoEbs from "@/assets/logo-ebs.png";
 
 const logos = [
   { src: logoPrototron, alt: "Prototron" },
   { src: logoTaltech, alt: "TalTech" },
   { src: logoSwedbank, alt: "Swedbank" },
   { src: logoIgniter, alt: "Igniter" },
+  { src: logoEbs, alt: "EBS" },
 ];
 
 const SocialProof = () => {
