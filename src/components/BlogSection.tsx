@@ -1,31 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
-import blog1 from "@/assets/blog1.jpg";
-import blog2 from "@/assets/blog2.jpg";
-import blog3 from "@/assets/blog3.jpg";
-
-const posts = [
-  {
-    img: blog1,
-    tags: ["AI & Hospitality", "Industry Trends"],
-    title: "Myths About AI Voice in Hospitality (And Why They're Costing You Money in 2026)",
-    excerpt: "AI voice assistants are becoming more common in hotels and restaurants. But many business owners still hesitate — not because the technology doesn't work, but because of outdated assumptions...",
-    date: "February 19, 2026",
-  },
-  {
-    img: blog2,
-    tags: ["AI & Hospitality"],
-    title: "SVARA AI — The Batman of Your Night Shift",
-    excerpt: "At 2:23 AM, your front desk is quiet. Your team has gone home. The phone rings. If no one answers, that call doesn't disappear — it turns into lost revenue...",
-    date: "February 19, 2026",
-  },
-  {
-    img: blog3,
-    tags: ["Industry Trends", "AI & Hospitality"],
-    title: "Why It's High Time to Adopt AI in Your Hotel?",
-    excerpt: "The real question is not whether AI will reshape hospitality. It's whether your hotel will lead, or be pushed...",
-    date: "February 19, 2026",
-  },
-];
+import { Link } from "react-router-dom";
+import { blogPosts } from "@/data/blogPosts";
 
 const BlogSection = () => {
   return (
@@ -42,12 +17,12 @@ const BlogSection = () => {
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 mb-10">
-          {posts.map((p, i) => (
-            <div key={i} className="bg-card rounded-2xl border border-border overflow-hidden">
+          {blogPosts.map((p) => (
+            <Link key={p.slug} to={`/blog/${p.slug}`} className="bg-card rounded-2xl border border-border overflow-hidden hover:border-primary/40 transition-colors group">
               <div className="relative h-52">
                 <img src={p.img} alt={p.title} className="w-full h-full object-cover" />
-                <div className="absolute bottom-3 right-3 w-8 h-8 bg-card rounded-full flex items-center justify-center shadow">
-                  <ArrowUpRight className="w-4 h-4 text-foreground" />
+                <div className="absolute bottom-3 right-3 w-8 h-8 bg-card rounded-full flex items-center justify-center shadow group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                  <ArrowUpRight className="w-4 h-4" />
                 </div>
               </div>
               <div className="p-5">
@@ -60,7 +35,7 @@ const BlogSection = () => {
                 <p className="text-xs text-muted-foreground mb-3">{p.excerpt}</p>
                 <p className="text-xs text-muted-foreground">{p.date}</p>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 
