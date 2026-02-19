@@ -119,7 +119,7 @@ const ROICalculator = () => {
                   <InputField label="No. Of Locations" value={locations1} onChange={setLocations1} />
                 </div>
               </div>
-              <div className="bg-roi-card rounded-2xl p-8 text-primary-foreground flex flex-col justify-between">
+              <div className="bg-[hsl(25,90%,55%)] rounded-2xl p-8 text-primary-foreground flex flex-col justify-between">
                 <div>
                   <span className="inline-flex items-center gap-1.5 text-xs font-medium bg-primary-foreground/20 rounded-full px-3 py-1 mb-6">Combinator</span>
                   <p className="text-sm opacity-80 mb-2">Revenue Lost Per Month</p>
