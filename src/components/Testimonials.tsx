@@ -1,4 +1,5 @@
 import { Star } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const columnA = [
   { name: "Art Ingemi", text: "I highly recommend this company to service your customers phone calls." },
@@ -37,9 +38,9 @@ const Testimonials = () => {
             Trusted by Business Owners Worldwide
           </h2>
           <p className="text-muted-foreground mb-8">Verified reviews from businesses using SVARA in real service conditions.</p>
-          <a href="#" className="inline-flex items-center gap-1.5 bg-primary text-primary-foreground rounded-full px-6 py-3 font-semibold text-sm hover:bg-primary/90 transition-colors">
+          <Link to="/book-a-demo" className="inline-flex items-center gap-1.5 bg-primary text-primary-foreground rounded-full px-6 py-3 font-semibold text-sm hover:bg-primary/90 transition-colors">
             Book a demo ↗
-          </a>
+          </Link>
         </div>
 
         <div className="grid sm:grid-cols-2 gap-4 h-[500px] overflow-hidden">
