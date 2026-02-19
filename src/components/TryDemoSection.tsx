@@ -1,8 +1,49 @@
-import { Phone, Play, ArrowUpRight } from "lucide-react";
+import { useState } from "react";
+import { Phone, Play, ArrowUpRight, Loader2 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "@/hooks/use-toast";
 import svaraLogo from "@/assets/svara-logo.png";
 
 const TryDemoSection = () => {
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [countryCode, setCountryCode] = useState("+1");
+  const [loading, setLoading] = useState(false);
+
+  const handleCallMe = async () => {
+    if (!name.trim()) {
+      toast({ title: "Please enter your name", variant: "destructive" });
+      return;
+    }
+    const digits = phone.replace(/\D/g, "");
+    if (digits.length < 7) {
+      toast({ title: "Please enter a valid phone number", variant: "destructive" });
+      return;
+    }
+
+    const fullPhone = `${countryCode}${digits}`;
+    setLoading(true);
+
+    try {
+      const { data, error } = await supabase.functions.invoke("call-me", {
+        body: { phone: fullPhone },
+      });
+
+      if (error) throw error;
+
+      if (data?.success) {
+        toast({ title: "Call initiated!", description: "You'll receive a call shortly." });
+      } else {
+        throw new Error(data?.error || "Failed to initiate call");
+      }
+    } catch (err: any) {
+      toast({ title: "Something went wrong", description: err.message, variant: "destructive" });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <section id="demo" className="py-20 px-4">
       <div className="container mx-auto">
@@ -15,22 +56,17 @@ const TryDemoSection = () => {
 
             {/* Realistic iPhone frame */}
             <div className="relative w-[290px] mx-auto">
-              {/* Outer shell */}
               <div className="relative rounded-[3rem] border-[3px] border-[#1a1a1a] bg-[#1a1a1a] p-[10px] shadow-[0_0_0_1px_rgba(255,255,255,0.1),0_20px_60px_-10px_rgba(0,0,0,0.5)]">
-                {/* Side button accents */}
                 <div className="absolute -left-[4px] top-[90px] w-[3px] h-[30px] bg-[#2a2a2a] rounded-l-sm" />
                 <div className="absolute -left-[4px] top-[135px] w-[3px] h-[50px] bg-[#2a2a2a] rounded-l-sm" />
                 <div className="absolute -left-[4px] top-[195px] w-[3px] h-[50px] bg-[#2a2a2a] rounded-l-sm" />
                 <div className="absolute -right-[4px] top-[140px] w-[3px] h-[65px] bg-[#2a2a2a] rounded-r-sm" />
 
-                {/* Inner screen */}
                 <div className="rounded-[2.2rem] bg-background overflow-hidden">
-                  {/* Dynamic Island */}
                   <div className="flex justify-center pt-3 pb-1 bg-background">
                     <div className="w-[90px] h-[25px] bg-[#1a1a1a] rounded-full" />
                   </div>
 
-                  {/* Status bar */}
                   <div className="flex items-center justify-between px-7 py-1 text-[11px] font-medium text-foreground">
                     <span>9:41</span>
                     <div className="flex items-center gap-1.5">
@@ -41,7 +77,6 @@ const TryDemoSection = () => {
                   </div>
 
                   <div className="px-6 pb-10 pt-6 flex flex-col items-center">
-                    {/* Svara logo */}
                     <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-6">
                       <img src={svaraLogo} alt="Svara logo" className="w-10 h-10 object-contain" />
                     </div>
@@ -55,19 +90,47 @@ const TryDemoSection = () => {
                     <input
                       type="text"
                       placeholder="Jane Smith"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
                       className="w-full rounded-xl border border-border bg-secondary px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground mb-4"
                     />
-                    <div className="w-full flex items-center gap-2 rounded-xl border border-border bg-secondary px-4 py-3 mb-5">
-                      <span className="text-sm">🇺🇸</span>
-                      <span className="text-xs text-muted-foreground">▾</span>
-                      <span className="text-sm text-muted-foreground">+1 Phone Number</span>
+                    <div className="w-full flex items-center gap-0 rounded-xl border border-border bg-secondary mb-5 overflow-hidden">
+                      <select
+                        value={countryCode}
+                        onChange={(e) => setCountryCode(e.target.value)}
+                        className="bg-secondary text-sm text-foreground pl-3 pr-1 py-3 border-r border-border outline-none cursor-pointer"
+                      >
+                        <option value="+1">🇺🇸 +1</option>
+                        <option value="+44">🇬🇧 +44</option>
+                        <option value="+372">🇪🇪 +372</option>
+                        <option value="+49">🇩🇪 +49</option>
+                        <option value="+33">🇫🇷 +33</option>
+                        <option value="+61">🇦🇺 +61</option>
+                        <option value="+91">🇮🇳 +91</option>
+                      </select>
+                      <input
+                        type="tel"
+                        placeholder="Phone Number"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        className="flex-1 bg-transparent px-3 py-3 text-sm text-foreground placeholder:text-muted-foreground outline-none"
+                      />
                     </div>
-                    <button className="w-full bg-roi-card text-primary-foreground rounded-full py-3 text-sm font-semibold hover:opacity-90 transition-opacity">
-                      Call Me
+                    <button
+                      onClick={handleCallMe}
+                      disabled={loading}
+                      className="w-full bg-roi-card text-primary-foreground rounded-full py-3 text-sm font-semibold hover:opacity-90 transition-opacity disabled:opacity-60"
+                    >
+                      {loading ? (
+                        <span className="inline-flex items-center gap-2">
+                          <Loader2 className="w-4 h-4 animate-spin" /> Calling...
+                        </span>
+                      ) : (
+                        "Call Me"
+                      )}
                     </button>
                   </div>
 
-                  {/* Home indicator */}
                   <div className="flex justify-center pb-3">
                     <div className="w-[120px] h-[4px] bg-foreground/20 rounded-full" />
                   </div>
@@ -86,7 +149,6 @@ const TryDemoSection = () => {
               Experience how naturally our AI takes orders, answers questions, and upsells — exactly like a trained staff member would.
             </p>
 
-            {/* Audio player card */}
             <div className="bg-gradient-to-br from-primary to-primary/80 rounded-2xl p-6 md:p-8 flex-1 flex flex-col justify-between">
               <h3 className="text-xl md:text-2xl font-bold text-primary-foreground mb-6">
                 Hear SVARA in Action
@@ -95,15 +157,10 @@ const TryDemoSection = () => {
               <div className="bg-primary-foreground/10 rounded-xl p-5">
                 <p className="text-sm text-primary-foreground/80 mb-4">Sample call recording</p>
 
-                {/* Waveform visualization */}
                 <div className="flex items-center gap-3 mb-4">
                   <div className="flex items-end gap-[3px] flex-1 h-12 justify-center">
                     {[4, 8, 12, 6, 16, 10, 14, 8, 18, 6, 12, 16, 8, 14, 10, 6, 12, 8, 16, 10, 14, 6, 8, 12].map((h, i) => (
-                      <div
-                        key={i}
-                        className="w-1 rounded-full bg-primary-foreground/80"
-                        style={{ height: `${h * 2.5}px` }}
-                      />
+                      <div key={i} className="w-1 rounded-full bg-primary-foreground/80" style={{ height: `${h * 2.5}px` }} />
                     ))}
                   </div>
                   <button className="w-12 h-12 rounded-full bg-primary-foreground/20 flex items-center justify-center shrink-0 hover:bg-primary-foreground/30 transition-colors">
@@ -111,11 +168,7 @@ const TryDemoSection = () => {
                   </button>
                   <div className="flex items-end gap-[3px] flex-1 h-12 justify-center">
                     {[10, 14, 6, 12, 8, 16, 10, 4, 14, 8, 12, 6, 16, 10, 8, 14, 6, 12, 8, 4, 10, 16, 8, 12].map((h, i) => (
-                      <div
-                        key={i}
-                        className="w-1 rounded-full bg-primary-foreground/80"
-                        style={{ height: `${h * 2.5}px` }}
-                      />
+                      <div key={i} className="w-1 rounded-full bg-primary-foreground/80" style={{ height: `${h * 2.5}px` }} />
                     ))}
                   </div>
                 </div>
@@ -132,12 +185,10 @@ const TryDemoSection = () => {
               >
                 Book a demo
               </Link>
-
             </div>
           </div>
         </div>
 
-        {/* Bottom CTA */}
         <div className="text-center mt-10">
           <Link
             to="/book-a-demo"
