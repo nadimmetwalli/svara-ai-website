@@ -40,9 +40,9 @@ const BlogSection = () => {
         </div>
 
         <div className="text-center">
-          <a href="#" className="inline-flex items-center gap-1.5 bg-primary text-primary-foreground rounded-full px-6 py-3 font-semibold text-sm hover:bg-primary/90 transition-colors">
+          <Link to="/blog" className="inline-flex items-center gap-1.5 bg-primary text-primary-foreground rounded-full px-6 py-3 font-semibold text-sm hover:bg-primary/90 transition-colors">
             View All <ArrowUpRight className="w-3.5 h-3.5" />
-          </a>
+          </Link>
         </div>
       </div>
     </section>
