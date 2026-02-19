@@ -6,24 +6,24 @@ import blog3 from "@/assets/blog3.jpg";
 const posts = [
   {
     img: blog1,
-    tags: ["Industry Trends", "AI & Hospitality", "Marketing & Strategy"],
-    title: "Best practices for running a successful hospitality business in 2026",
-    excerpt: "Running a hospitality business in 2026 takes a new playbook. Learn what successful operators are doing right now to increase orders, cut stress,...",
-    date: "February 11, 2026",
+    tags: ["AI & Hospitality", "Industry Trends"],
+    title: "Myths About AI Voice in Hospitality (And Why They're Costing You Money in 2026)",
+    excerpt: "AI voice assistants are becoming more common in hotels and restaurants. But many business owners still hesitate — not because the technology doesn't work, but because of outdated assumptions...",
+    date: "February 19, 2026",
   },
   {
     img: blog2,
-    tags: ["Industry Trends"],
-    title: "3 Hospitality tech upgrades you need to know about in 2026",
-    excerpt: "Hospitality tech in 2026 is practical, not flashy. Here are three upgrades businesses are using to capture more orders, cut costs, and run more...",
-    date: "February 11, 2026",
+    tags: ["AI & Hospitality"],
+    title: "SVARA AI — The Batman of Your Night Shift",
+    excerpt: "At 2:23 AM, your front desk is quiet. Your team has gone home. The phone rings. If no one answers, that call doesn't disappear — it turns into lost revenue...",
+    date: "February 19, 2026",
   },
   {
     img: blog3,
-    tags: ["AI & Hospitality"],
-    title: "Testing and launching your business AI assistant: A practical guide",
-    excerpt: "A practical guide to testing and launching an AI assistant for your business",
-    date: "February 5, 2026",
+    tags: ["Industry Trends", "AI & Hospitality"],
+    title: "Why It's High Time to Adopt AI in Your Hotel?",
+    excerpt: "The real question is not whether AI will reshape hospitality. It's whether your hotel will lead, or be pushed...",
+    date: "February 19, 2026",
   },
 ];
 
