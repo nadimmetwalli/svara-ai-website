@@ -15,6 +15,12 @@ const Blog = () => {
       <Header />
       <section className="pt-28 pb-20 px-4">
         <div className="container mx-auto">
+          <Link
+            to="/"
+            className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
+          >
+            <ArrowUpRight className="w-4 h-4 rotate-[-135deg]" /> Back to home
+          </Link>
           <div className="text-center mb-12">
             <span className="inline-flex items-center gap-1.5 text-xs font-medium border border-primary text-primary rounded-full px-3 py-1 mb-4">
               Blog
