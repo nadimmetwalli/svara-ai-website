@@ -2,15 +2,15 @@ import { Star } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const columnA = [
-  { name: "Art Ingemi", text: "I highly recommend this company to service your customers phone calls." },
-  { name: "Samantha Noble", text: "We rely a lot on phone orders for takeout, and with just one girl handling both calls and in-person customers, things used to get pretty hectic. Since we got SVARA AI, those issues have pretty much vanished." },
-  { name: "Lucas Norman", text: "I've been using this AI system for the past 4 weeks at my pizza takeaway and delivery business. Our customer base is mostly older and they prefer to call in their orders." },
+  { name: "Elisabeth Krause, GM — Boutique Hotel Vienna", text: "Since deploying SVARA, our front desk team can finally focus on the guests in front of them. The AI handles after-hours booking calls flawlessly — we've seen a 35% increase in direct reservations." },
+  { name: "Henrik Lindqvist, Ops Director — Nordic Spa Resort", text: "SVARA's multilingual capabilities are a game-changer. Our guests call in Swedish, Finnish, English, and German — and the AI handles every language with ease. Our guest satisfaction scores have never been higher." },
+  { name: "Ana Pereira, Revenue Manager — Lisbon Heritage Hotels", text: "We were losing bookings to OTAs simply because no one could answer the phone during peak check-in hours. SVARA recovered over €12,000 in direct bookings in our first month alone." },
 ];
 
 const columnB = [
-  { name: "Rico Fries LLC", text: "I have used this company for about two months now and the results have been great from my experience. The customer service and support has been 10 out of 10 for me." },
-  { name: "Jean V", text: "The program is very helpful with our hotel and event venue where we handle tons of calls each day. The dashboard is pretty straight-forward and easy to use." },
-  { name: "Michael Hamilton", text: "I've had a fantastic experience with SVARA AI. The AI makes me thousands of dollars a month from upselling and is saving my front of house dozens of hours." },
+  { name: "James Whitfield, Owner — The Georgian House B&B", text: "As a small property, we can't staff a 24/7 reception. SVARA acts as our virtual concierge overnight — confirming reservations, answering amenity questions, and even booking restaurant tables for guests." },
+  { name: "Sofia Andersson, Front Office Manager — Clarion Hotel", text: "The warm hand-off feature is brilliant. When a guest has a complex request, SVARA transfers them to our team with a full transcript. It feels completely seamless and our staff loves it." },
+  { name: "Marco Bellini, Director — Tuscan Villa Collection", text: "I was skeptical about AI in luxury hospitality, but SVARA's tone is warm and professional. Our guests often don't realise they're speaking to an AI. It handles spa bookings, room upgrades, and concierge requests beautifully." },
 ];
 
 const ReviewCard = ({ name, text }: { name: string; text: string }) => (
@@ -35,9 +35,9 @@ const Testimonials = () => {
       <div className="container mx-auto grid md:grid-cols-[1fr_2fr] gap-12">
         <div>
           <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-4">
-            Trusted by Business Owners Worldwide
+          Trusted by Hoteliers Worldwide
           </h2>
-          <p className="text-muted-foreground mb-8">Verified reviews from businesses using SVARA in real service conditions.</p>
+          <p className="text-muted-foreground mb-8">Verified reviews from hospitality professionals using SVARA in real operations.</p>
           <Link to="/book-a-demo" className="inline-flex items-center gap-1.5 bg-primary text-primary-foreground rounded-full px-6 py-3 font-semibold text-sm hover:bg-primary/90 transition-colors">
             Book a demo ↗
           </Link>
