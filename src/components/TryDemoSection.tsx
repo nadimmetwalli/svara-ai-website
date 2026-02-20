@@ -1,16 +1,37 @@
-import { useState } from "react";
-import { Phone, Play, ArrowUpRight, Loader2 } from "lucide-react";
+import { useState, useRef } from "react";
+import { Phone, Play, Pause, ArrowUpRight, Loader2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 import svaraLogo from "@/assets/svara-logo.png";
+import demoRecording from "@/assets/demo-call-recording.mp3";
 
 const TryDemoSection = () => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [countryCode, setCountryCode] = useState("+372");
   const [loading, setLoading] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
+  const togglePlayback = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    if (isPlaying) {
+      audio.pause();
+    } else {
+      audio.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
+
+  const formatTime = (t: number) => {
+    const m = Math.floor(t / 60);
+    const s = Math.floor(t % 60);
+    return `${m}:${s.toString().padStart(2, "0")}`;
+  };
   const handleCallMe = async () => {
     if (!name.trim()) {
       toast({ title: "Please enter your name", variant: "destructive" });
@@ -156,26 +177,58 @@ const TryDemoSection = () => {
 
               <div className="bg-primary-foreground/10 rounded-xl p-5">
                 <p className="text-sm text-primary-foreground/80 mb-4">Sample call recording</p>
+                <audio
+                  ref={audioRef}
+                  src={demoRecording}
+                  onTimeUpdate={() => setCurrentTime(audioRef.current?.currentTime || 0)}
+                  onLoadedMetadata={() => setDuration(audioRef.current?.duration || 0)}
+                  onEnded={() => { setIsPlaying(false); setCurrentTime(0); }}
+                />
 
                 <div className="flex items-center gap-3 mb-4">
                   <div className="flex items-end gap-[3px] flex-1 h-12 justify-center">
                     {[4, 8, 12, 6, 16, 10, 14, 8, 18, 6, 12, 16, 8, 14, 10, 6, 12, 8, 16, 10, 14, 6, 8, 12].map((h, i) => (
-                      <div key={i} className="w-1 rounded-full bg-primary-foreground/80" style={{ height: `${h * 2.5}px` }} />
+                      <div
+                        key={i}
+                        className="w-1 rounded-full transition-colors"
+                        style={{
+                          height: `${h * 2.5}px`,
+                          backgroundColor: duration > 0 && (i / 24) <= (currentTime / duration)
+                            ? "rgba(255,255,255,0.95)"
+                            : "rgba(255,255,255,0.4)",
+                        }}
+                      />
                     ))}
                   </div>
-                  <button className="w-12 h-12 rounded-full bg-primary-foreground/20 flex items-center justify-center shrink-0 hover:bg-primary-foreground/30 transition-colors">
-                    <Play className="w-5 h-5 text-primary-foreground fill-primary-foreground" />
+                  <button
+                    onClick={togglePlayback}
+                    className="w-12 h-12 rounded-full bg-primary-foreground/20 flex items-center justify-center shrink-0 hover:bg-primary-foreground/30 transition-colors"
+                  >
+                    {isPlaying ? (
+                      <Pause className="w-5 h-5 text-primary-foreground fill-primary-foreground" />
+                    ) : (
+                      <Play className="w-5 h-5 text-primary-foreground fill-primary-foreground" />
+                    )}
                   </button>
                   <div className="flex items-end gap-[3px] flex-1 h-12 justify-center">
                     {[10, 14, 6, 12, 8, 16, 10, 4, 14, 8, 12, 6, 16, 10, 8, 14, 6, 12, 8, 4, 10, 16, 8, 12].map((h, i) => (
-                      <div key={i} className="w-1 rounded-full bg-primary-foreground/80" style={{ height: `${h * 2.5}px` }} />
+                      <div
+                        key={i}
+                        className="w-1 rounded-full transition-colors"
+                        style={{
+                          height: `${h * 2.5}px`,
+                          backgroundColor: duration > 0 && ((i + 24) / 48) <= (currentTime / duration)
+                            ? "rgba(255,255,255,0.95)"
+                            : "rgba(255,255,255,0.4)",
+                        }}
+                      />
                     ))}
                   </div>
                 </div>
 
                 <div className="flex justify-between text-xs text-primary-foreground/60">
-                  <span>0:00</span>
-                  <span>1:40</span>
+                  <span>{formatTime(currentTime)}</span>
+                  <span>{duration > 0 ? formatTime(duration) : "0:00"}</span>
                 </div>
               </div>
 
