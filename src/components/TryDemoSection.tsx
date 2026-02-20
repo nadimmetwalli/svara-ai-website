@@ -8,7 +8,7 @@ import svaraLogo from "@/assets/svara-logo.png";
 const TryDemoSection = () => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [countryCode, setCountryCode] = useState("+1");
+  const [countryCode, setCountryCode] = useState("+372");
   const [loading, setLoading] = useState(false);
 
   const handleCallMe = async () => {
