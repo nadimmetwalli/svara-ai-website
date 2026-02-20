@@ -5,6 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 import svaraLogo from "@/assets/svara-logo.png";
 import demoRecording from "@/assets/demo-call-recording.mp3";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const TryDemoSection = () => {
   const [name, setName] = useState("");
@@ -15,23 +16,21 @@ const TryDemoSection = () => {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
+  const { t } = useLanguage();
 
   const togglePlayback = () => {
     const audio = audioRef.current;
     if (!audio) return;
-    if (isPlaying) {
-      audio.pause();
-    } else {
-      audio.play();
-    }
+    if (isPlaying) { audio.pause(); } else { audio.play(); }
     setIsPlaying(!isPlaying);
   };
 
-  const formatTime = (t: number) => {
-    const m = Math.floor(t / 60);
-    const s = Math.floor(t % 60);
+  const formatTime = (time: number) => {
+    const m = Math.floor(time / 60);
+    const s = Math.floor(time % 60);
     return `${m}:${s.toString().padStart(2, "0")}`;
   };
+
   const handleCallMe = async () => {
     if (!name.trim()) {
       toast({ title: "Please enter your name", variant: "destructive" });
@@ -42,17 +41,11 @@ const TryDemoSection = () => {
       toast({ title: "Please enter a valid phone number", variant: "destructive" });
       return;
     }
-
     const fullPhone = `${countryCode}${digits}`;
     setLoading(true);
-
     try {
-      const { data, error } = await supabase.functions.invoke("call-me", {
-        body: { phone: fullPhone },
-      });
-
+      const { data, error } = await supabase.functions.invoke("call-me", { body: { phone: fullPhone } });
       if (error) throw error;
-
       if (data?.success) {
         toast({ title: "Call initiated!", description: "You'll receive a call shortly." });
       } else {
@@ -69,13 +62,12 @@ const TryDemoSection = () => {
     <section id="demo" className="py-20 px-4">
       <div className="container mx-auto">
         <div className="grid md:grid-cols-2 gap-6">
-          {/* Left: Try SVARA AI - iPhone mockup */}
+          {/* Left: Try SVARA AI */}
           <div className="bg-card rounded-3xl border border-border p-8 md:p-12 flex flex-col items-center">
             <span className="self-start inline-flex items-center gap-1.5 text-xs font-medium border border-primary/40 text-primary rounded-full px-3 py-1 mb-8">
-              Try SVARA AI
+              {t.tryDemo.trySvaraAi}
             </span>
 
-            {/* Realistic iPhone frame */}
             <div className="relative w-[290px] mx-auto">
               <div className="relative rounded-[3rem] border-[3px] border-[#1a1a1a] bg-[#1a1a1a] p-[10px] shadow-[0_0_0_1px_rgba(255,255,255,0.1),0_20px_60px_-10px_rgba(0,0,0,0.5)]">
                 <div className="absolute -left-[4px] top-[90px] w-[3px] h-[30px] bg-[#2a2a2a] rounded-l-sm" />
@@ -102,25 +94,13 @@ const TryDemoSection = () => {
                       <img src={svaraLogo} alt="Svara logo" className="w-10 h-10 object-contain" />
                     </div>
 
-                    <p className="text-sm font-semibold text-foreground text-center">Don't Trust The Tech,</p>
-                    <p className="text-sm font-semibold text-primary text-center mb-3">Try It Yourself</p>
-                    <p className="text-xs text-muted-foreground text-center mb-7">
-                      Enter your details and our AI will call you within minutes.
-                    </p>
+                    <p className="text-sm font-semibold text-foreground text-center">{t.tryDemo.dontTrust}</p>
+                    <p className="text-sm font-semibold text-primary text-center mb-3">{t.tryDemo.tryItYourself}</p>
+                    <p className="text-xs text-muted-foreground text-center mb-7">{t.tryDemo.enterDetails}</p>
 
-                    <input
-                      type="text"
-                      placeholder="Jane Smith"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      className="w-full rounded-xl border border-border bg-secondary px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground mb-4"
-                    />
+                    <input type="text" placeholder={t.tryDemo.namePlaceholder} value={name} onChange={(e) => setName(e.target.value)} className="w-full rounded-xl border border-border bg-secondary px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground mb-4" />
                     <div className="w-full flex items-center gap-0 rounded-xl border border-border bg-secondary mb-5 overflow-hidden">
-                      <select
-                        value={countryCode}
-                        onChange={(e) => setCountryCode(e.target.value)}
-                        className="bg-secondary text-sm text-foreground pl-3 pr-1 py-3 border-r border-border outline-none cursor-pointer"
-                      >
+                      <select value={countryCode} onChange={(e) => setCountryCode(e.target.value)} className="bg-secondary text-sm text-foreground pl-3 pr-1 py-3 border-r border-border outline-none cursor-pointer">
                         <option value="+1">🇺🇸 +1</option>
                         <option value="+44">🇬🇧 +44</option>
                         <option value="+372">🇪🇪 +372</option>
@@ -129,26 +109,12 @@ const TryDemoSection = () => {
                         <option value="+61">🇦🇺 +61</option>
                         <option value="+91">🇮🇳 +91</option>
                       </select>
-                      <input
-                        type="tel"
-                        placeholder="Phone Number"
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
-                        className="flex-1 bg-transparent px-3 py-3 text-sm text-foreground placeholder:text-muted-foreground outline-none"
-                      />
+                      <input type="tel" placeholder={t.tryDemo.phonePlaceholder} value={phone} onChange={(e) => setPhone(e.target.value)} className="flex-1 bg-transparent px-3 py-3 text-sm text-foreground placeholder:text-muted-foreground outline-none" />
                     </div>
-                    <button
-                      onClick={handleCallMe}
-                      disabled={loading}
-                      className="w-full bg-roi-card text-primary-foreground rounded-full py-3 text-sm font-semibold hover:opacity-90 transition-opacity disabled:opacity-60"
-                    >
+                    <button onClick={handleCallMe} disabled={loading} className="w-full bg-roi-card text-primary-foreground rounded-full py-3 text-sm font-semibold hover:opacity-90 transition-opacity disabled:opacity-60">
                       {loading ? (
-                        <span className="inline-flex items-center gap-2">
-                          <Loader2 className="w-4 h-4 animate-spin" /> Calling...
-                        </span>
-                      ) : (
-                        "Call Me"
-                      )}
+                        <span className="inline-flex items-center gap-2"><Loader2 className="w-4 h-4 animate-spin" /> {t.tryDemo.calling}</span>
+                      ) : t.tryDemo.callMe}
                     </button>
                   </div>
 
@@ -163,65 +129,30 @@ const TryDemoSection = () => {
           {/* Right: Live Demo */}
           <div className="bg-card rounded-3xl border border-border p-8 md:p-12 flex flex-col">
             <span className="self-start inline-flex items-center gap-1.5 text-xs font-medium border border-primary/40 text-primary rounded-full px-3 py-1 mb-6">
-              Live Demo
+              {t.tryDemo.liveDemo}
             </span>
 
-            <p className="text-lg text-muted-foreground mb-8 max-w-md">
-              Experience how naturally our AI takes orders, answers questions, and upsells — exactly like a trained staff member would.
-            </p>
+            <p className="text-lg text-muted-foreground mb-8 max-w-md">{t.tryDemo.liveDemoDesc}</p>
 
             <div className="bg-gradient-to-br from-primary to-primary/80 rounded-2xl p-6 md:p-8 flex-1 flex flex-col justify-between">
-              <h3 className="text-xl md:text-2xl font-bold text-primary-foreground mb-6">
-                Hear SVARA in Action
-              </h3>
+              <h3 className="text-xl md:text-2xl font-bold text-primary-foreground mb-6">{t.tryDemo.hearSvara}</h3>
 
               <div className="bg-primary-foreground/10 rounded-xl p-5">
-                <p className="text-sm text-primary-foreground/80 mb-4">Sample call recording</p>
-                <audio
-                  ref={audioRef}
-                  src={demoRecording}
-                  onTimeUpdate={() => setCurrentTime(audioRef.current?.currentTime || 0)}
-                  onLoadedMetadata={() => setDuration(audioRef.current?.duration || 0)}
-                  onEnded={() => { setIsPlaying(false); setCurrentTime(0); }}
-                />
+                <p className="text-sm text-primary-foreground/80 mb-4">{t.tryDemo.sampleCall}</p>
+                <audio ref={audioRef} src={demoRecording} onTimeUpdate={() => setCurrentTime(audioRef.current?.currentTime || 0)} onLoadedMetadata={() => setDuration(audioRef.current?.duration || 0)} onEnded={() => { setIsPlaying(false); setCurrentTime(0); }} />
 
                 <div className="flex items-center gap-3 mb-4">
                   <div className="flex items-end gap-[3px] flex-1 h-12 justify-center">
                     {[4, 8, 12, 6, 16, 10, 14, 8, 18, 6, 12, 16, 8, 14, 10, 6, 12, 8, 16, 10, 14, 6, 8, 12].map((h, i) => (
-                      <div
-                        key={i}
-                        className="w-1 rounded-full transition-colors"
-                        style={{
-                          height: `${h * 2.5}px`,
-                          backgroundColor: duration > 0 && (i / 24) <= (currentTime / duration)
-                            ? "rgba(255,255,255,0.95)"
-                            : "rgba(255,255,255,0.4)",
-                        }}
-                      />
+                      <div key={i} className="w-1 rounded-full transition-colors" style={{ height: `${h * 2.5}px`, backgroundColor: duration > 0 && (i / 24) <= (currentTime / duration) ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.4)" }} />
                     ))}
                   </div>
-                  <button
-                    onClick={togglePlayback}
-                    className="w-12 h-12 rounded-full bg-primary-foreground/20 flex items-center justify-center shrink-0 hover:bg-primary-foreground/30 transition-colors"
-                  >
-                    {isPlaying ? (
-                      <Pause className="w-5 h-5 text-primary-foreground fill-primary-foreground" />
-                    ) : (
-                      <Play className="w-5 h-5 text-primary-foreground fill-primary-foreground" />
-                    )}
+                  <button onClick={togglePlayback} className="w-12 h-12 rounded-full bg-primary-foreground/20 flex items-center justify-center shrink-0 hover:bg-primary-foreground/30 transition-colors">
+                    {isPlaying ? <Pause className="w-5 h-5 text-primary-foreground fill-primary-foreground" /> : <Play className="w-5 h-5 text-primary-foreground fill-primary-foreground" />}
                   </button>
                   <div className="flex items-end gap-[3px] flex-1 h-12 justify-center">
                     {[10, 14, 6, 12, 8, 16, 10, 4, 14, 8, 12, 6, 16, 10, 8, 14, 6, 12, 8, 4, 10, 16, 8, 12].map((h, i) => (
-                      <div
-                        key={i}
-                        className="w-1 rounded-full transition-colors"
-                        style={{
-                          height: `${h * 2.5}px`,
-                          backgroundColor: duration > 0 && ((i + 24) / 48) <= (currentTime / duration)
-                            ? "rgba(255,255,255,0.95)"
-                            : "rgba(255,255,255,0.4)",
-                        }}
-                      />
+                      <div key={i} className="w-1 rounded-full transition-colors" style={{ height: `${h * 2.5}px`, backgroundColor: duration > 0 && ((i + 24) / 48) <= (currentTime / duration) ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.4)" }} />
                     ))}
                   </div>
                 </div>
@@ -232,22 +163,16 @@ const TryDemoSection = () => {
                 </div>
               </div>
 
-              <Link
-                to="/book-a-demo"
-                className="mt-6 block text-center bg-primary-foreground text-primary rounded-full py-3 font-semibold text-sm hover:bg-primary-foreground/90 transition-opacity"
-              >
-                Book a demo
+              <Link to="/book-a-demo" className="mt-6 block text-center bg-primary-foreground text-primary rounded-full py-3 font-semibold text-sm hover:bg-primary-foreground/90 transition-opacity">
+                {t.header.bookADemo}
               </Link>
             </div>
           </div>
         </div>
 
         <div className="text-center mt-10">
-          <Link
-            to="/book-a-demo"
-            className="inline-flex items-center gap-1.5 bg-primary text-primary-foreground rounded-full px-8 py-3 font-semibold text-sm hover:bg-primary/90 transition-colors"
-          >
-            Book a demo <ArrowUpRight className="w-3.5 h-3.5" />
+          <Link to="/book-a-demo" className="inline-flex items-center gap-1.5 bg-primary text-primary-foreground rounded-full px-8 py-3 font-semibold text-sm hover:bg-primary/90 transition-colors">
+            {t.header.bookADemo} <ArrowUpRight className="w-3.5 h-3.5" />
           </Link>
         </div>
       </div>
