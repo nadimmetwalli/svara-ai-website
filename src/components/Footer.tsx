@@ -10,7 +10,7 @@ const Footer = () => {
     <>
       {/* CTA Banner */}
       <section className="relative bg-primary overflow-hidden py-16 px-4">
-        <div className="absolute inset-0 opacity-[0.06]">
+        <div className="absolute inset-0 opacity-[0.06] pointer-events-none">
           <div className="grid grid-cols-8 md:grid-cols-12 gap-8 p-8">
             {Array.from({ length: 96 }).map((_, i) => (
               <img key={i} src={svaraLogo} alt="" className="w-8 h-8 object-contain brightness-0 invert" />
