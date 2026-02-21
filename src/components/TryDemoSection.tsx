@@ -63,12 +63,12 @@ const TryDemoSection = () => {
       <div className="container mx-auto">
         <div className="grid md:grid-cols-2 gap-6">
           {/* Left: Try SVARA AI */}
-          <div className="bg-card rounded-3xl border border-border p-8 md:p-12 flex flex-col items-center">
+          <div className="bg-card rounded-3xl border border-border p-4 sm:p-8 md:p-12 flex flex-col items-center">
             <span className="self-start inline-flex items-center gap-1.5 text-xs font-medium border border-primary/40 text-primary rounded-full px-3 py-1 mb-8">
               {t.tryDemo.trySvaraAi}
             </span>
 
-            <div className="relative w-[290px] mx-auto">
+            <div className="relative w-full max-w-[290px] mx-auto">
               <div className="relative rounded-[3rem] border-[3px] border-[#1a1a1a] bg-[#1a1a1a] p-[10px] shadow-[0_0_0_1px_rgba(255,255,255,0.1),0_20px_60px_-10px_rgba(0,0,0,0.5)]">
                 <div className="absolute -left-[4px] top-[90px] w-[3px] h-[30px] bg-[#2a2a2a] rounded-l-sm" />
                 <div className="absolute -left-[4px] top-[135px] w-[3px] h-[50px] bg-[#2a2a2a] rounded-l-sm" />
@@ -127,7 +127,7 @@ const TryDemoSection = () => {
           </div>
 
           {/* Right: Live Demo */}
-          <div className="bg-card rounded-3xl border border-border p-8 md:p-12 flex flex-col">
+          <div className="bg-card rounded-3xl border border-border p-4 sm:p-8 md:p-12 flex flex-col">
             <span className="self-start inline-flex items-center gap-1.5 text-xs font-medium border border-primary/40 text-primary rounded-full px-3 py-1 mb-6">
               {t.tryDemo.liveDemo}
             </span>

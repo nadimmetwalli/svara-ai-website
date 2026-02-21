@@ -9,7 +9,7 @@ const FeaturesGrid = () => {
   return (
     <section id="features" className="py-20 px-4">
       <div className="container mx-auto">
-        <div className="bg-features-gradient rounded-3xl p-8 md:p-16">
+        <div className="bg-features-gradient rounded-3xl p-5 sm:p-8 md:p-16">
           <div className="text-center mb-12">
             <span className="inline-flex items-center gap-1.5 text-xs font-medium border border-primary-foreground/40 text-primary-foreground rounded-full px-3 py-1 mb-4">
               {t.features.badge}

@@ -8,7 +8,7 @@ const FAQSection = () => {
 
   return (
     <section className="py-20 px-4 bg-secondary">
-      <div className="container mx-auto grid md:grid-cols-[1fr_2fr] gap-12">
+      <div className="container mx-auto grid md:grid-cols-[1fr_2fr] gap-8 md:gap-12">
         <div>
           <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-4">
             {t.faq.title}
