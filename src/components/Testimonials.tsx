@@ -21,7 +21,7 @@ const Testimonials = () => {
 
   return (
     <section className="py-20 px-4">
-      <div className="container mx-auto grid md:grid-cols-[1fr_2fr] gap-12">
+      <div className="container mx-auto grid md:grid-cols-[1fr_2fr] gap-8 md:gap-12">
         <div>
           <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-4">
             {t.testimonials.title}
@@ -32,7 +32,7 @@ const Testimonials = () => {
           </Link>
         </div>
 
-        <div className="grid sm:grid-cols-2 gap-4 h-[500px] overflow-hidden">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 h-[350px] sm:h-[500px] overflow-hidden">
           <div className="relative overflow-hidden">
             <div className="animate-scroll-up flex flex-col">
               {dupeA.map((r, i) => <ReviewCard key={i} name={r.name} text={r.text} />)}

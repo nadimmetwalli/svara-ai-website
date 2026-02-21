@@ -46,7 +46,7 @@ const Footer = () => {
               <p className="text-sm text-foreground/60 leading-relaxed">{t.footer.description}</p>
             </div>
 
-            <div className="flex flex-wrap gap-16">
+            <div className="flex flex-wrap gap-10 sm:gap-16">
               <div>
                 <h4 className="text-sm font-semibold text-certus-red mb-4">{t.footer.product}</h4>
                 <div className="space-y-2 text-sm text-certus-dark/70">

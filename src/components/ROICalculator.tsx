@@ -52,9 +52,9 @@ const ROICalculator = () => {
           <p className="text-muted-foreground max-w-xl mx-auto">{t.roi.subtitle}</p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-3 mb-10">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10">
           {t.roi.tabs.map((tab, i) => (
-            <button key={tab} onClick={() => setActiveTab(i)} className={`rounded-full px-5 py-2.5 text-sm font-semibold transition-colors ${i === activeTab ? "bg-primary text-primary-foreground" : "border border-primary text-primary hover:bg-primary/5"}`}>
+            <button key={tab} onClick={() => setActiveTab(i)} className={`rounded-full px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold transition-colors ${i === activeTab ? "bg-primary text-primary-foreground" : "border border-primary text-primary hover:bg-primary/5"}`}>
               {tab}
             </button>
           ))}
@@ -63,7 +63,7 @@ const ROICalculator = () => {
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {activeTab === 0 && (
             <>
-              <div className="bg-card rounded-2xl p-8 border border-border space-y-8">
+              <div className="bg-card rounded-2xl p-5 sm:p-8 border border-border space-y-6 sm:space-y-8">
                 <SliderField label={t.roi.callsPerDay} value={callsPerDay0} onChange={setCallsPerDay0} max={100} />
                 <SliderField label={t.roi.callToOrder} value={callToOrder} onChange={setCallToOrder} max={100} />
                 <SliderField label={t.roi.missedCalls} value={missedCalls} onChange={setMissedCalls} max={100} />
@@ -73,11 +73,11 @@ const ROICalculator = () => {
                   <InputField label={t.roi.locations} value={locations0} onChange={setLocations0} />
                 </div>
               </div>
-              <div className="bg-roi-card rounded-2xl p-8 text-primary-foreground flex flex-col justify-between">
+              <div className="bg-roi-card rounded-2xl p-5 sm:p-8 text-primary-foreground flex flex-col justify-between">
                 <div>
                   <span className="inline-flex items-center gap-1.5 text-xs font-medium bg-primary-foreground/20 rounded-full px-3 py-1 mb-6">{t.roi.combinator}</span>
                   <p className="text-sm opacity-80 mb-2">{t.roi.revenueLostMonth}</p>
-                  <p className="text-4xl md:text-5xl font-extrabold mb-8">${monthlyLoss0.toLocaleString()}</p>
+                  <p className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-6 sm:mb-8">${monthlyLoss0.toLocaleString()}</p>
                   <div className="space-y-3">
                     <ResultBox label={t.roi.revenueLostYear} value={`$${yearlyLoss0.toLocaleString()}`} />
                     <ResultBox label={t.roi.locationsLoss} value={`$${totalLocationLoss0.toLocaleString()}`} />
@@ -91,7 +91,7 @@ const ROICalculator = () => {
 
           {activeTab === 1 && (
             <>
-              <div className="bg-card rounded-2xl p-8 border border-border space-y-8">
+              <div className="bg-card rounded-2xl p-5 sm:p-8 border border-border space-y-6 sm:space-y-8">
                 <SliderField label={t.roi.callsPerDay} value={callsPerDay1} onChange={setCallsPerDay1} max={100} />
                 <SliderField label={t.roi.callToOrder} value={callToOrder1} onChange={setCallToOrder1} max={100} />
                 <SliderField label={t.roi.upsellValue} value={upsellValue} onChange={setUpsellValue} max={100} />
@@ -101,11 +101,11 @@ const ROICalculator = () => {
                   <InputField label={t.roi.locations} value={locations1} onChange={setLocations1} />
                 </div>
               </div>
-              <div className="bg-[hsl(25,90%,55%)] rounded-2xl p-8 text-primary-foreground flex flex-col justify-between">
+              <div className="bg-[hsl(25,90%,55%)] rounded-2xl p-5 sm:p-8 text-primary-foreground flex flex-col justify-between">
                 <div>
                   <span className="inline-flex items-center gap-1.5 text-xs font-medium bg-primary-foreground/20 rounded-full px-3 py-1 mb-6">{t.roi.combinator}</span>
                   <p className="text-sm opacity-80 mb-2">{t.roi.revenueLostMonth}</p>
-                  <p className="text-4xl md:text-5xl font-extrabold mb-8">${monthlyLoss1.toLocaleString()}</p>
+                  <p className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-6 sm:mb-8">${monthlyLoss1.toLocaleString()}</p>
                   <div className="space-y-3">
                     <ResultBox label={t.roi.revenueLostYear} value={`$${yearlyLoss1.toLocaleString()}`} />
                     <ResultBox label={t.roi.locationsLoss} value={`$${totalLocationLoss1.toLocaleString()}`} />
@@ -119,7 +119,7 @@ const ROICalculator = () => {
 
           {activeTab === 2 && (
             <>
-              <div className="bg-card rounded-2xl p-8 border border-border space-y-8">
+              <div className="bg-card rounded-2xl p-5 sm:p-8 border border-border space-y-6 sm:space-y-8">
                 <SliderField label={t.roi.callsPerDay} value={callsPerDay2} onChange={setCallsPerDay2} max={100} />
                 <SliderField label={t.roi.avgCallLength} value={avgCallLength} onChange={setAvgCallLength} max={100} />
                 <InputField label={t.roi.labourCost} value={labourCost} onChange={setLabourCost} />
@@ -128,11 +128,11 @@ const ROICalculator = () => {
                   <InputField label={t.roi.locations} value={locations2} onChange={setLocations2} />
                 </div>
               </div>
-              <div className="bg-[hsl(160,60%,55%)] rounded-2xl p-8 text-primary-foreground flex flex-col justify-between">
+              <div className="bg-[hsl(160,60%,55%)] rounded-2xl p-5 sm:p-8 text-primary-foreground flex flex-col justify-between">
                 <div>
                   <span className="inline-flex items-center gap-1.5 text-xs font-medium bg-primary-foreground/20 rounded-full px-3 py-1 mb-6">{t.roi.combinator}</span>
                   <p className="text-sm opacity-80 mb-2">{t.roi.timeSaved}</p>
-                  <p className="text-4xl md:text-5xl font-extrabold mb-8">{timeSavedPerMonth.toLocaleString(undefined, { maximumFractionDigits: 1 })} h</p>
+                  <p className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-6 sm:mb-8">{timeSavedPerMonth.toLocaleString(undefined, { maximumFractionDigits: 1 })} h</p>
                   <div className="space-y-3">
                     <ResultBox label={t.roi.labourSaved} value={`$${labourCostSaved.toLocaleString(undefined, { maximumFractionDigits: 0 })}`} />
                     <div className="grid grid-cols-2 gap-3">
