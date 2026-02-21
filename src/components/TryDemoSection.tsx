@@ -68,7 +68,7 @@ const TryDemoSection = () => {
               {t.tryDemo.trySvaraAi}
             </span>
 
-            <div className="relative w-full max-w-[290px] mx-auto">
+            <div className="relative w-full max-w-[250px] sm:max-w-[290px] mx-auto">
               <div className="relative rounded-[3rem] border-[3px] border-[#1a1a1a] bg-[#1a1a1a] p-[10px] shadow-[0_0_0_1px_rgba(255,255,255,0.1),0_20px_60px_-10px_rgba(0,0,0,0.5)]">
                 <div className="absolute -left-[4px] top-[90px] w-[3px] h-[30px] bg-[#2a2a2a] rounded-l-sm" />
                 <div className="absolute -left-[4px] top-[135px] w-[3px] h-[50px] bg-[#2a2a2a] rounded-l-sm" />
@@ -134,25 +134,25 @@ const TryDemoSection = () => {
 
             <p className="text-lg text-muted-foreground mb-8 max-w-md">{t.tryDemo.liveDemoDesc}</p>
 
-            <div className="bg-gradient-to-br from-primary to-primary/80 rounded-2xl p-6 md:p-8 flex-1 flex flex-col justify-between">
+            <div className="bg-gradient-to-br from-primary to-primary/80 rounded-2xl p-4 sm:p-6 md:p-8 flex-1 flex flex-col justify-between">
               <h3 className="text-xl md:text-2xl font-bold text-primary-foreground mb-6">{t.tryDemo.hearSvara}</h3>
 
-              <div className="bg-primary-foreground/10 rounded-xl p-5">
+              <div className="bg-primary-foreground/10 rounded-xl p-3 sm:p-5">
                 <p className="text-sm text-primary-foreground/80 mb-4">{t.tryDemo.sampleCall}</p>
                 <audio ref={audioRef} src={demoRecording} onTimeUpdate={() => setCurrentTime(audioRef.current?.currentTime || 0)} onLoadedMetadata={() => setDuration(audioRef.current?.duration || 0)} onEnded={() => { setIsPlaying(false); setCurrentTime(0); }} />
 
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="flex items-end gap-[3px] flex-1 h-12 justify-center">
+                <div className="flex items-center gap-2 sm:gap-3 mb-4">
+                  <div className="flex items-end gap-[2px] sm:gap-[3px] flex-1 h-10 sm:h-12 justify-center overflow-hidden">
                     {[4, 8, 12, 6, 16, 10, 14, 8, 18, 6, 12, 16, 8, 14, 10, 6, 12, 8, 16, 10, 14, 6, 8, 12].map((h, i) => (
-                      <div key={i} className="w-1 rounded-full transition-colors" style={{ height: `${h * 2.5}px`, backgroundColor: duration > 0 && (i / 24) <= (currentTime / duration) ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.4)" }} />
+                      <div key={i} className="w-[2px] sm:w-1 rounded-full transition-colors" style={{ height: `${h * 2}px`, backgroundColor: duration > 0 && (i / 24) <= (currentTime / duration) ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.4)" }} />
                     ))}
                   </div>
-                  <button onClick={togglePlayback} className="w-12 h-12 rounded-full bg-primary-foreground/20 flex items-center justify-center shrink-0 hover:bg-primary-foreground/30 transition-colors">
-                    {isPlaying ? <Pause className="w-5 h-5 text-primary-foreground fill-primary-foreground" /> : <Play className="w-5 h-5 text-primary-foreground fill-primary-foreground" />}
+                  <button onClick={togglePlayback} className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary-foreground/20 flex items-center justify-center shrink-0 hover:bg-primary-foreground/30 transition-colors">
+                    {isPlaying ? <Pause className="w-4 h-4 sm:w-5 sm:h-5 text-primary-foreground fill-primary-foreground" /> : <Play className="w-4 h-4 sm:w-5 sm:h-5 text-primary-foreground fill-primary-foreground" />}
                   </button>
-                  <div className="flex items-end gap-[3px] flex-1 h-12 justify-center">
+                  <div className="flex items-end gap-[2px] sm:gap-[3px] flex-1 h-10 sm:h-12 justify-center overflow-hidden">
                     {[10, 14, 6, 12, 8, 16, 10, 4, 14, 8, 12, 6, 16, 10, 8, 14, 6, 12, 8, 4, 10, 16, 8, 12].map((h, i) => (
-                      <div key={i} className="w-1 rounded-full transition-colors" style={{ height: `${h * 2.5}px`, backgroundColor: duration > 0 && ((i + 24) / 48) <= (currentTime / duration) ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.4)" }} />
+                      <div key={i} className="w-[2px] sm:w-1 rounded-full transition-colors" style={{ height: `${h * 2}px`, backgroundColor: duration > 0 && ((i + 24) / 48) <= (currentTime / duration) ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.4)" }} />
                     ))}
                   </div>
                 </div>
