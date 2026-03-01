@@ -68,8 +68,8 @@ const TryDemoSection = () => {
               {t.tryDemo.trySvaraAi}
             </span>
 
-            <div className="relative w-full max-w-[250px] sm:max-w-[290px] mx-auto">
-              <div className="relative rounded-[3rem] border-[3px] border-[#1a1a1a] bg-[#1a1a1a] p-[10px] shadow-[0_0_0_1px_rgba(255,255,255,0.1),0_20px_60px_-10px_rgba(0,0,0,0.5)]">
+            <div className="relative w-full max-w-[220px] sm:max-w-[290px] mx-auto">
+              <div className="relative rounded-[2.5rem] sm:rounded-[3rem] border-[2px] sm:border-[3px] border-[#1a1a1a] bg-[#1a1a1a] p-[8px] sm:p-[10px] shadow-[0_0_0_1px_rgba(255,255,255,0.1),0_20px_60px_-10px_rgba(0,0,0,0.5)]">
                 <div className="absolute -left-[4px] top-[90px] w-[3px] h-[30px] bg-[#2a2a2a] rounded-l-sm" />
                 <div className="absolute -left-[4px] top-[135px] w-[3px] h-[50px] bg-[#2a2a2a] rounded-l-sm" />
                 <div className="absolute -left-[4px] top-[195px] w-[3px] h-[50px] bg-[#2a2a2a] rounded-l-sm" />
