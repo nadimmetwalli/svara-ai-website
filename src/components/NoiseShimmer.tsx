@@ -96,11 +96,11 @@ const NoiseShimmer = () => {
           
           // Threshold to create bright veins/branches
           const v = Math.max(0, combined);
-          const brightness = Math.pow(v, 2.5) * 1.8;
+          const brightness = Math.pow(v, 1.5) * 2.5;
 
-          if (brightness > 0.02) {
-            const alpha = Math.min(brightness * 0.18, 0.14);
-            ctx.fillStyle = `rgba(230, 235, 245, ${alpha})`;
+          if (brightness > 0.01) {
+            const alpha = Math.min(brightness * 0.35, 0.3);
+            ctx.fillStyle = `rgba(240, 242, 250, ${alpha})`;
             ctx.fillRect(x, y, pixelSize, pixelSize);
           }
         }
