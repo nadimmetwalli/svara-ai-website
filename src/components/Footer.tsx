@@ -10,10 +10,24 @@ const Footer = () => {
     <>
       {/* CTA Banner */}
       <section className="relative bg-primary overflow-hidden py-16 px-4">
-        <div className="absolute inset-0 opacity-[0.06] pointer-events-none">
-          <div className="grid grid-cols-8 md:grid-cols-12 gap-8 p-8">
-            {Array.from({ length: 96 }).map((_, i) => (
-              <img key={i} src={svaraLogo} alt="" className="w-8 h-8 object-contain brightness-0 invert" />
+        <div className="absolute inset-0 opacity-[0.06]">
+          <div className="grid grid-cols-6 md:grid-cols-10 gap-2 p-4">
+            {Array.from({ length: 120 }).map((_, i) => (
+              <img
+                key={i}
+                src={svaraLogo}
+                alt=""
+                className="w-14 h-14 object-contain brightness-0 invert transition-transform duration-100 hover:scale-50 hover:duration-100 [transition:transform_0.1s_ease-in] hover:[transition:transform_0.1s_ease-in]"
+                style={{ transition: 'transform 0.4s ease-out' }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transition = 'transform 0.1s ease-in';
+                  e.currentTarget.style.transform = 'scale(0.5)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transition = 'transform 0.6s ease-out';
+                  e.currentTarget.style.transform = 'scale(1)';
+                }}
+              />
             ))}
           </div>
         </div>
