@@ -66,6 +66,22 @@ const NoiseShimmer = () => {
     const scale = 0.003;
     const timeScale = 0.00015;
     const pixelSize = 6;
+    let canvasW = 0;
+    let canvasH = 0;
+    
+    const updateSize = () => {
+      const parent = canvas.parentElement;
+      if (parent) {
+        canvasW = parent.offsetWidth;
+        canvasH = parent.offsetHeight;
+        canvas.width = canvasW;
+        canvas.height = canvasH;
+      }
+    };
+    
+    updateSize();
+    const resizeObserver = new ResizeObserver(updateSize);
+    resizeObserver.observe(canvas.parentElement!);
 
     const render = (time: number) => {
       const rect = canvas.getBoundingClientRect();
