@@ -90,29 +90,9 @@
     background-size: 60px 52px;
     pointer-events: none;
   }
-  .bg-roi-section::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(105deg, transparent 40%, hsl(0 0% 100% / 0.12) 45%, hsl(0 0% 100% / 0.2) 50%, transparent 55%),
-      linear-gradient(250deg, transparent 40%, hsl(0 0% 100% / 0.08) 45%, hsl(0 0% 100% / 0.15) 50%, transparent 55%);
-    background-size: 300% 100%, 250% 100%;
-    animation: roi-shimmer-1 8s ease-in-out infinite, roi-shimmer-2 12s ease-in-out 3s infinite;
-    pointer-events: none;
-  }
   .badge-glow:hover {
     box-shadow: 0 0 20px hsl(348 83% 47% / 0.3);
   }
-}
-
-@keyframes roi-shimmer-1 {
-  0%, 100% { background-position: -100% 0, 150% 0; }
-  50% { background-position: 200% 0, 150% 0; }
-}
-@keyframes roi-shimmer-2 {
-  0%, 100% { background-position: -100% 0, -100% 0; }
-  50% { background-position: -100% 0, 200% 0; }
 }
 
 html {
