@@ -63,9 +63,8 @@ const NoiseShimmer = () => {
 
     const simplex = new SimplexNoise(42);
     let animId: number;
-    const scale = 0.003;
     const timeScale = 0.0004;
-    const pixelSize = 6;
+    const pixelSize = 4;
     let canvasW = 0;
     let canvasH = 0;
     
@@ -103,20 +102,22 @@ const NoiseShimmer = () => {
           const x = col * pixelSize;
           const y = row * pixelSize;
 
-          // Multiple octaves for organic branching feel
-          const n1 = simplex.noise2D(x * scale + t * 0.7, y * scale + t * 0.3);
-          const n2 = simplex.noise2D(x * scale * 2 + 50 + t * 0.5, y * scale * 2 + 50 - t * 0.4);
-          const n3 = simplex.noise2D(x * scale * 0.5 - t * 0.2, y * scale * 0.5 + t * 0.6);
-
-          const combined = n1 * 0.5 + n2 * 0.3 + n3 * 0.2;
+          // Higher frequency noise for thinner streaks
+          const scale1 = 0.006;
+          const scale2 = 0.012;
+          const scale3 = 0.002;
           
-          // Create vein-like bright areas — warm gray matching cream background
-          const v = Math.max(0, combined);
-          const brightness = Math.pow(v, 0.8) * 2.5;
+          const n1 = simplex.noise2D(x * scale1 + t * 0.7, y * scale1 + t * 0.3);
+          const n2 = simplex.noise2D(x * scale2 + 50 + t * 0.5, y * scale2 + 50 - t * 0.4);
+          const n3 = simplex.noise2D(x * scale3 - t * 0.2, y * scale3 + t * 0.6);
 
-          if (brightness > 0.05) {
-            const alpha = Math.min(brightness * 0.7, 0.85);
-            // Exact match to background: hsl(20, 33%, 96%) = rgb(245, 240, 236)
+          // Use abs-based ridge noise for thin vein-like streaks
+          const ridge1 = 1 - Math.abs(n1);
+          const ridge2 = 1 - Math.abs(n2);
+          const combined = Math.pow(ridge1, 3) * 0.6 + Math.pow(ridge2, 3) * 0.3 + Math.max(0, n3) * 0.1;
+          
+          if (combined > 0.15) {
+            const alpha = Math.min((combined - 0.15) * 1.8, 0.8);
             ctx.fillStyle = `rgba(245, 240, 236, ${alpha})`;
             ctx.fillRect(x, y, pixelSize, pixelSize);
           }
@@ -136,8 +137,8 @@ const NoiseShimmer = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 pointer-events-none"
-      style={{ zIndex: 2, width: "100%", height: "100%" }}
+      className="fixed inset-0 pointer-events-none"
+      style={{ zIndex: 1, width: "100vw", height: "100vh" }}
     />
   );
 };

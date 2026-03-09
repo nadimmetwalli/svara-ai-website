@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Calculator } from "lucide-react";
 import { Slider } from "@/components/ui/slider";
 import { useLanguage } from "@/i18n/LanguageContext";
-import NoiseShimmer from "@/components/NoiseShimmer";
 
 const ROICalculator = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -42,7 +41,6 @@ const ROICalculator = () => {
 
   return (
     <section id="roi" className="py-20 px-4 bg-roi-section relative overflow-hidden">
-      <NoiseShimmer />
       <div className="container mx-auto relative z-10">
         <div className="text-center mb-12">
           <span className="inline-flex items-center gap-1.5 text-xs font-medium border border-primary text-primary rounded-full px-3 py-1 mb-4">
