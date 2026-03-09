@@ -35,7 +35,7 @@ const Footer = () => {
           <h2 className="text-2xl md:text-3xl font-bold text-primary-foreground mb-6 whitespace-pre-line">
             {t.footer.ctaTitle}
           </h2>
-          <Link to="/book-a-demo" className="inline-flex items-center gap-2 bg-primary-foreground text-primary font-semibold px-8 py-3 rounded-full transition-colors shadow-lg hover:bg-primary-foreground/90">
+          <Link to="/book-a-demo" className="pointer-events-auto inline-flex items-center gap-2 bg-primary-foreground text-primary font-semibold px-8 py-3 rounded-full transition-colors shadow-lg hover:bg-primary-foreground/90">
             {t.header.bookADemo} <ExternalLink className="w-4 h-4" />
           </Link>
         </div>
