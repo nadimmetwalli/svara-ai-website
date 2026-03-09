@@ -2,6 +2,13 @@ import { Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
 
+const FadeOverlays = () => (
+  <>
+    <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-background to-transparent z-10 pointer-events-none" />
+    <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background to-transparent z-10 pointer-events-none" />
+  </>
+);
+
 const ReviewCard = ({ name, text }: { name: string; text: string }) => (
   <div className="bg-card rounded-2xl border border-border p-6 mb-4">
     <div className="flex gap-0.5 mb-3">
@@ -36,13 +43,15 @@ const Testimonials = () => {
 
         {/* Mobile: single unified scroll */}
         <div className="sm:hidden h-[400px] overflow-hidden relative">
+          <FadeOverlays />
           <div className="animate-scroll-up flex flex-col">
             {dupeMobile.map((r, i) => <ReviewCard key={i} name={r.name} text={r.text} />)}
           </div>
         </div>
 
         {/* Desktop: dual column scroll */}
-        <div className="hidden sm:grid grid-cols-2 gap-4 h-[500px] overflow-hidden">
+        <div className="hidden sm:grid grid-cols-2 gap-4 h-[500px] overflow-hidden relative">
+          <FadeOverlays />
           <div className="relative overflow-hidden">
             <div className="animate-scroll-up flex flex-col">
               {dupeA.map((r, i) => <ReviewCard key={i} name={r.name} text={r.text} />)}
