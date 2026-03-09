@@ -116,10 +116,21 @@ const BookADemo = () => {
       const { error } = await supabase.from("demo_bookings").insert(bookingData);
       if (error) throw error;
 
-      // Send email notification (don't block on failure)
-      supabase.functions.invoke("send-demo-booking", {
+      // Send email notification with rate limiting
+      const { error: fnError } = await supabase.functions.invoke("send-demo-booking", {
         body: bookingData,
-      }).catch((err) => console.error("Email send failed:", err));
+      });
+
+      if (fnError) {
+        // Check if rate limited (edge function returns 429)
+        const msg = fnError.message || "";
+        if (msg.includes("Too many")) {
+          toast.error("Too many submissions. Please try again later.");
+          setIsSubmitting(false);
+          return;
+        }
+        console.error("Email send failed:", fnError);
+      }
 
       setIsSubmitted(true);
       toast.success("Demo booked! We'll be in touch shortly.");
