@@ -11,9 +11,29 @@ const NOTIFICATION_EMAIL = "info@svara-ai.com";
 const RATE_LIMIT_WINDOW_MINUTES = 60;
 const RATE_LIMIT_MAX = 3;
 
+const BOT_USER_AGENTS = [
+  "bot", "crawl", "spider", "scrape", "curl", "wget", "python-requests",
+  "httpclient", "java/", "go-http", "perl", "ruby", "phantom", "headless",
+  "selenium", "puppeteer", "playwright",
+];
+
+function isSuspiciousUA(req: Request): boolean {
+  const ua = (req.headers.get("user-agent") || "").toLowerCase();
+  if (!ua || ua.length < 10) return true;
+  return BOT_USER_AGENTS.some((bot) => ua.includes(bot));
+}
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
+  }
+
+  // Block suspicious user agents
+  if (isSuspiciousUA(req)) {
+    return new Response(
+      JSON.stringify({ error: "Forbidden" }),
+      { status: 403, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+    );
   }
 
   try {
