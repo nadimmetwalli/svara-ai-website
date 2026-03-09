@@ -1,0 +1,27 @@
+{
+  "name": "SVARA AI — Multilingual AI Voice Agent for Hospitality",
+  "short_name": "SVARA AI",
+  "description": "The first multilingual AI Phone Agent for the hospitality industry. Answer every call, in any language, 24/7.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAF9F6",
+  "theme_color": "#6B21A8",
+  "icons": [
+    {
+      "src": "/svara-logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/svara-logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/svara-logo.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
