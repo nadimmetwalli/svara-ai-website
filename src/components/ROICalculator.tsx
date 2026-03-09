@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Calculator } from "lucide-react";
 import { Slider } from "@/components/ui/slider";
 import { useLanguage } from "@/i18n/LanguageContext";
-import NoiseShimmer from "@/components/NoiseShimmer";
 
 const ROICalculator = () => {
   const [activeTab, setActiveTab] = useState(0);
