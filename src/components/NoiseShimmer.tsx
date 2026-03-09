@@ -1,0 +1,125 @@
+import { useEffect, useRef } from "react";
+
+// Simplex noise implementation (2D)
+class SimplexNoise {
+  private perm: Uint8Array;
+  private grad3 = [
+    [1, 1], [-1, 1], [1, -1], [-1, -1],
+    [1, 0], [-1, 0], [0, 1], [0, -1],
+  ];
+
+  constructor(seed = Math.random()) {
+    this.perm = new Uint8Array(512);
+    const p = new Uint8Array(256);
+    for (let i = 0; i < 256; i++) p[i] = i;
+    // Seed-based shuffle
+    let s = seed * 2147483647;
+    for (let i = 255; i > 0; i--) {
+      s = (s * 16807) % 2147483647;
+      const j = Math.floor((s / 2147483647) * (i + 1));
+      [p[i], p[j]] = [p[j], p[i]];
+    }
+    for (let i = 0; i < 512; i++) this.perm[i] = p[i & 255];
+  }
+
+  noise2D(x: number, y: number): number {
+    const F2 = 0.5 * (Math.sqrt(3) - 1);
+    const G2 = (3 - Math.sqrt(3)) / 6;
+    const s = (x + y) * F2;
+    const i = Math.floor(x + s);
+    const j = Math.floor(y + s);
+    const t = (i + j) * G2;
+    const X0 = i - t, Y0 = j - t;
+    const x0 = x - X0, y0 = y - Y0;
+    const [i1, j1] = x0 > y0 ? [1, 0] : [0, 1];
+    const x1 = x0 - i1 + G2, y1 = y0 - j1 + G2;
+    const x2 = x0 - 1 + 2 * G2, y2 = y0 - 1 + 2 * G2;
+    const ii = i & 255, jj = j & 255;
+
+    const dot = (gi: number, x: number, y: number) => {
+      const g = this.grad3[gi % 8];
+      return g[0] * x + g[1] * y;
+    };
+
+    let n0 = 0, n1 = 0, n2 = 0;
+    let t0 = 0.5 - x0 * x0 - y0 * y0;
+    if (t0 > 0) { t0 *= t0; n0 = t0 * t0 * dot(this.perm[ii + this.perm[jj]], x0, y0); }
+    let t1 = 0.5 - x1 * x1 - y1 * y1;
+    if (t1 > 0) { t1 *= t1; n1 = t1 * t1 * dot(this.perm[ii + i1 + this.perm[jj + j1]], x1, y1); }
+    let t2 = 0.5 - x2 * x2 - y2 * y2;
+    if (t2 > 0) { t2 *= t2; n2 = t2 * t2 * dot(this.perm[ii + 1 + this.perm[jj + 1]], x2, y2); }
+
+    return 70 * (n0 + n1 + n2);
+  }
+}
+
+const NoiseShimmer = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const simplex = new SimplexNoise(42);
+    let animId: number;
+    const scale = 0.004;
+    const timeScale = 0.0003;
+    // Render at lower resolution for performance
+    const pixelSize = 4;
+
+    const render = (time: number) => {
+      const { clientWidth: w, clientHeight: h } = canvas;
+      if (canvas.width !== w || canvas.height !== h) {
+        canvas.width = w;
+        canvas.height = h;
+      }
+      ctx.clearRect(0, 0, w, h);
+
+      const cols = Math.ceil(w / pixelSize);
+      const rows = Math.ceil(h / pixelSize);
+      const t = time * timeScale;
+
+      for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < cols; col++) {
+          const x = col * pixelSize;
+          const y = row * pixelSize;
+
+          // Layer multiple noise octaves for organic branching
+          const n1 = simplex.noise2D(x * scale, y * scale + t);
+          const n2 = simplex.noise2D(x * scale * 2.5 + 100, y * scale * 2.5 + t * 1.3);
+          const n3 = simplex.noise2D(x * scale * 0.7 + t * 0.5, y * scale * 0.7);
+
+          // Combine: creates branching, flowing patterns
+          const combined = (n1 * 0.5 + n2 * 0.3 + n3 * 0.2);
+          
+          // Threshold to create bright veins/branches
+          const v = Math.max(0, combined);
+          const brightness = Math.pow(v, 2.5) * 1.8;
+
+          if (brightness > 0.02) {
+            const alpha = Math.min(brightness * 0.18, 0.14);
+            ctx.fillStyle = `rgba(230, 235, 245, ${alpha})`;
+            ctx.fillRect(x, y, pixelSize, pixelSize);
+          }
+        }
+      }
+
+      animId = requestAnimationFrame(render);
+    };
+
+    animId = requestAnimationFrame(render);
+    return () => cancelAnimationFrame(animId);
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 w-full h-full pointer-events-none"
+      style={{ zIndex: 1 }}
+    />
+  );
+};
+
+export default NoiseShimmer;
