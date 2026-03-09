@@ -225,6 +225,17 @@ const BookADemo = () => {
                             onChange={(e) => setContactForm({ ...contactForm, phone: e.target.value })}
                             className="w-full rounded-xl border border-border bg-secondary px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground"
                           />
+                          {/* Honeypot — hidden from real users, bots fill it */}
+                          <input
+                            type="text"
+                            name="website"
+                            value={honeypot}
+                            onChange={(e) => setHoneypot(e.target.value)}
+                            autoComplete="off"
+                            tabIndex={-1}
+                            aria-hidden="true"
+                            style={{ position: "absolute", left: "-9999px", opacity: 0, height: 0 }}
+                          />
                         </div>
                       </div>
                     ) : (
