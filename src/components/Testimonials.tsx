@@ -16,6 +16,8 @@ const ReviewCard = ({ name, text }: { name: string; text: string }) => (
 
 const Testimonials = () => {
   const { t } = useLanguage();
+  const allReviews = [...t.testimonials.columnA, ...t.testimonials.columnB];
+  const dupeMobile = [...allReviews, ...allReviews];
   const dupeA = [...t.testimonials.columnA, ...t.testimonials.columnA];
   const dupeB = [...t.testimonials.columnB, ...t.testimonials.columnB];
 
@@ -32,7 +34,15 @@ const Testimonials = () => {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 h-[350px] sm:h-[500px] overflow-hidden">
+        {/* Mobile: single unified scroll */}
+        <div className="sm:hidden h-[400px] overflow-hidden relative">
+          <div className="animate-scroll-up flex flex-col">
+            {dupeMobile.map((r, i) => <ReviewCard key={i} name={r.name} text={r.text} />)}
+          </div>
+        </div>
+
+        {/* Desktop: dual column scroll */}
+        <div className="hidden sm:grid grid-cols-2 gap-4 h-[500px] overflow-hidden">
           <div className="relative overflow-hidden">
             <div className="animate-scroll-up flex flex-col">
               {dupeA.map((r, i) => <ReviewCard key={i} name={r.name} text={r.text} />)}
