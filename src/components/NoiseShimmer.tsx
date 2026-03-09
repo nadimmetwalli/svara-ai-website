@@ -64,7 +64,7 @@ const NoiseShimmer = () => {
     const simplex = new SimplexNoise(42);
     let animId: number;
     const scale = 0.003;
-    const timeScale = 0.00015;
+    const timeScale = 0.0004;
     const pixelSize = 6;
     let canvasW = 0;
     let canvasH = 0;
