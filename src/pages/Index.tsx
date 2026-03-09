@@ -10,12 +10,10 @@ import BlogSection from "@/components/BlogSection";
 import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
 import AnimatedSection from "@/components/AnimatedSection";
-import NoiseShimmer from "@/components/NoiseShimmer";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background relative">
-      <NoiseShimmer />
+    <div className="min-h-screen bg-background">
       <Header />
       <AnimatedSection>
         <HeroSection />
