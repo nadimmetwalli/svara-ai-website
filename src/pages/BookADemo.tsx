@@ -84,6 +84,12 @@ const BookADemo = () => {
   };
 
   const handleSubmit = async () => {
+    // Honeypot check — bots fill hidden fields
+    if (honeypot) {
+      setIsSubmitted(true);
+      return;
+    }
+
     if (!contactForm.name.trim() || !contactForm.email.trim()) {
       toast.error("Please fill in your name and email.");
       return;
