@@ -115,8 +115,9 @@ const NoiseShimmer = () => {
           const brightness = Math.pow(v, 0.8) * 2.5;
 
           if (brightness > 0.05) {
-            const alpha = Math.min(brightness * 0.55, 0.6);
-            ctx.fillStyle = `rgba(222, 215, 208, ${alpha})`;
+            const alpha = Math.min(brightness * 0.7, 0.85);
+            // Match the cream background color so shimmer hides the hex pattern
+            ctx.fillStyle = `rgba(239, 233, 228, ${alpha})`;
             ctx.fillRect(x, y, pixelSize, pixelSize);
           }
         }
