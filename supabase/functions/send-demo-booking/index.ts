@@ -30,9 +30,10 @@ serve(async (req) => {
     const locations = escHtml(String(raw.locations || ""));
     const challenge = escHtml(String(raw.challenge || ""));
 
-    if (!name || !email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!name || !email || !emailRegex.test(email)) {
       return new Response(
-        JSON.stringify({ error: "Name and email are required" }),
+        JSON.stringify({ error: "A valid name and email are required" }),
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
