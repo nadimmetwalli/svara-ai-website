@@ -112,11 +112,10 @@ const NoiseShimmer = () => {
           
           // Create vein-like bright areas — warm gray matching cream background
           const v = Math.max(0, combined);
-          const brightness = Math.pow(v, 1.0) * 2;
+          const brightness = Math.pow(v, 0.8) * 2.5;
 
-          if (brightness > 0.1) {
-            const alpha = Math.min(brightness * 0.4, 0.45);
-            // Warm gray/beige shimmer that blends with cream background
+          if (brightness > 0.05) {
+            const alpha = Math.min(brightness * 0.55, 0.6);
             ctx.fillStyle = `rgba(222, 215, 208, ${alpha})`;
             ctx.fillRect(x, y, pixelSize, pixelSize);
           }
