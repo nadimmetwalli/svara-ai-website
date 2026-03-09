@@ -19,7 +19,16 @@ serve(async (req) => {
       throw new Error("RESEND_API_KEY is not configured");
     }
 
-    const { name, email, phone, business_type, locations, challenge } = await req.json();
+    const escHtml = (s: string) =>
+      s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+
+    const raw = await req.json();
+    const name = escHtml(String(raw.name || ""));
+    const email = String(raw.email || "").trim();
+    const phone = escHtml(String(raw.phone || ""));
+    const business_type = escHtml(String(raw.business_type || ""));
+    const locations = escHtml(String(raw.locations || ""));
+    const challenge = escHtml(String(raw.challenge || ""));
 
     if (!name || !email) {
       return new Response(
