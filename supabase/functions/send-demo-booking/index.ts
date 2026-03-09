@@ -55,7 +55,8 @@ serve(async (req) => {
 
     const notificationData = await notificationRes.json();
     if (!notificationRes.ok) {
-      throw new Error(`Resend API failed [${notificationRes.status}]: ${JSON.stringify(notificationData)}`);
+      console.error(`Resend API failed [${notificationRes.status}]:`, notificationData);
+      throw new Error("Email sending failed");
     }
 
     // Send confirmation email to the prospect
