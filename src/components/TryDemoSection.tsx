@@ -25,9 +25,9 @@ const TryDemoSection = () => {
   };
 
   return (
-    <section id="demo" className="py-12 sm:py-20 px-4">
+    <section id="demo" className="py-12 sm:py-20 px-4 overflow-hidden">
       <div className="container mx-auto max-w-2xl">
-        <div className="bg-card rounded-3xl border border-border p-4 sm:p-8 md:p-12 flex flex-col">
+        <div className="bg-card rounded-3xl border border-border p-4 sm:p-8 md:p-12 flex flex-col overflow-hidden">
           <span className="self-start inline-flex items-center gap-1.5 text-xs font-medium border border-primary/40 text-primary rounded-full px-3 py-1 mb-6">
             {t.tryDemo.liveDemo}
           </span>
