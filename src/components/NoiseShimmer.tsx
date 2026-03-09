@@ -110,13 +110,14 @@ const NoiseShimmer = () => {
 
           const combined = n1 * 0.5 + n2 * 0.3 + n3 * 0.2;
           
-          // Create vein-like bright areas
+          // Create vein-like bright areas — use silvery/cool tint visible on cream
           const v = Math.max(0, combined);
-          const brightness = Math.pow(v, 1.2) * 3;
+          const brightness = Math.pow(v, 1.0) * 2;
 
-          if (brightness > 0.05) {
-            const alpha = Math.min(brightness * 0.25, 0.22);
-            ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+          if (brightness > 0.1) {
+            const alpha = Math.min(brightness * 0.4, 0.45);
+            // Silver-lavender shimmer visible on cream background
+            ctx.fillStyle = `rgba(180, 190, 210, ${alpha})`;
             ctx.fillRect(x, y, pixelSize, pixelSize);
           }
         }
