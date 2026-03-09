@@ -137,8 +137,8 @@ const NoiseShimmer = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 pointer-events-none"
-      style={{ zIndex: 2, width: "100%", height: "100%" }}
+      className="fixed inset-0 pointer-events-none"
+      style={{ zIndex: 1, width: "100vw", height: "100vh" }}
     />
   );
 };
