@@ -12,7 +12,6 @@ class SimplexNoise {
     this.perm = new Uint8Array(512);
     const p = new Uint8Array(256);
     for (let i = 0; i < 256; i++) p[i] = i;
-    // Seed-based shuffle
     let s = seed * 2147483647;
     for (let i = 255; i > 0; i--) {
       s = (s * 16807) % 2147483647;
@@ -64,17 +63,25 @@ const NoiseShimmer = () => {
 
     const simplex = new SimplexNoise(42);
     let animId: number;
-    const scale = 0.004;
-    const timeScale = 0.0003;
-    // Render at lower resolution for performance
-    const pixelSize = 4;
+    const scale = 0.003;
+    const timeScale = 0.00015;
+    const pixelSize = 6;
 
     const render = (time: number) => {
-      const { clientWidth: w, clientHeight: h } = canvas;
+      const rect = canvas.getBoundingClientRect();
+      const w = Math.floor(rect.width);
+      const h = Math.floor(rect.height);
+      
+      if (w === 0 || h === 0) {
+        animId = requestAnimationFrame(render);
+        return;
+      }
+      
       if (canvas.width !== w || canvas.height !== h) {
         canvas.width = w;
         canvas.height = h;
       }
+      
       ctx.clearRect(0, 0, w, h);
 
       const cols = Math.ceil(w / pixelSize);
@@ -86,21 +93,20 @@ const NoiseShimmer = () => {
           const x = col * pixelSize;
           const y = row * pixelSize;
 
-          // Layer multiple noise octaves for organic branching
-          const n1 = simplex.noise2D(x * scale, y * scale + t);
-          const n2 = simplex.noise2D(x * scale * 2.5 + 100, y * scale * 2.5 + t * 1.3);
-          const n3 = simplex.noise2D(x * scale * 0.7 + t * 0.5, y * scale * 0.7);
+          // Multiple octaves for organic branching feel
+          const n1 = simplex.noise2D(x * scale + t * 0.7, y * scale + t * 0.3);
+          const n2 = simplex.noise2D(x * scale * 2 + 50 + t * 0.5, y * scale * 2 + 50 - t * 0.4);
+          const n3 = simplex.noise2D(x * scale * 0.5 - t * 0.2, y * scale * 0.5 + t * 0.6);
 
-          // Combine: creates branching, flowing patterns
-          const combined = (n1 * 0.5 + n2 * 0.3 + n3 * 0.2);
+          const combined = n1 * 0.5 + n2 * 0.3 + n3 * 0.2;
           
-          // Threshold to create bright veins/branches
+          // Create vein-like bright areas
           const v = Math.max(0, combined);
-          const brightness = Math.pow(v, 1.5) * 2.5;
+          const brightness = Math.pow(v, 1.2) * 3;
 
-          if (brightness > 0.01) {
-            const alpha = Math.min(brightness * 0.35, 0.3);
-            ctx.fillStyle = `rgba(240, 242, 250, ${alpha})`;
+          if (brightness > 0.05) {
+            const alpha = Math.min(brightness * 0.25, 0.22);
+            ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
             ctx.fillRect(x, y, pixelSize, pixelSize);
           }
         }
@@ -116,8 +122,8 @@ const NoiseShimmer = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 w-full h-full pointer-events-none"
-      style={{ zIndex: 1 }}
+      className="absolute inset-0 pointer-events-none"
+      style={{ zIndex: 2, width: "100%", height: "100%" }}
     />
   );
 };
