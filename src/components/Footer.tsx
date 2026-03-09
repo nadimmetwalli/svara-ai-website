@@ -10,14 +10,14 @@ const Footer = () => {
     <>
       {/* CTA Banner */}
       <section className="relative bg-primary overflow-hidden py-16 px-4">
-        <div className="absolute inset-0 opacity-[0.06]">
-          <div className="grid grid-cols-6 md:grid-cols-10 gap-2 p-4">
-            {Array.from({ length: 120 }).map((_, i) => (
+        <div className="absolute inset-0 opacity-[0.06] z-0">
+          <div className="grid grid-cols-4 md:grid-cols-8 gap-[3px]" style={{ padding: '3px' }}>
+            {Array.from({ length: 200 }).map((_, i) => (
               <img
                 key={i}
                 src={svaraLogo}
                 alt=""
-                className="w-14 h-14 object-contain brightness-0 invert transition-transform duration-100 hover:scale-50 hover:duration-100 [transition:transform_0.1s_ease-in] hover:[transition:transform_0.1s_ease-in]"
+                className="w-full aspect-square object-contain brightness-0 invert"
                 style={{ transition: 'transform 0.4s ease-out' }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transition = 'transform 0.1s ease-in';
@@ -31,7 +31,7 @@ const Footer = () => {
             ))}
           </div>
         </div>
-        <div className="relative z-10 text-center">
+        <div className="relative z-10 text-center pointer-events-none">
           <h2 className="text-2xl md:text-3xl font-bold text-primary-foreground mb-6 whitespace-pre-line">
             {t.footer.ctaTitle}
           </h2>
