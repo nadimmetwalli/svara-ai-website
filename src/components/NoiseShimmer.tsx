@@ -84,18 +84,12 @@ const NoiseShimmer = () => {
     resizeObserver.observe(canvas.parentElement!);
 
     const render = (time: number) => {
-      const rect = canvas.getBoundingClientRect();
-      const w = Math.floor(rect.width);
-      const h = Math.floor(rect.height);
+      const w = canvasW;
+      const h = canvasH;
       
       if (w === 0 || h === 0) {
         animId = requestAnimationFrame(render);
         return;
-      }
-      
-      if (canvas.width !== w || canvas.height !== h) {
-        canvas.width = w;
-        canvas.height = h;
       }
       
       ctx.clearRect(0, 0, w, h);
