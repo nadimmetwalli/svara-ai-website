@@ -97,10 +97,12 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  overflow: hidden;
+  height: 100%;
 }
 
 body {
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
+  height: 100%;
 }
