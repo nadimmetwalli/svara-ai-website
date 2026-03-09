@@ -93,9 +93,6 @@ const NoiseShimmer = () => {
       }
       
       ctx.clearRect(0, 0, w, h);
-      // Debug: draw a semi-transparent red rectangle to verify canvas renders
-      ctx.fillStyle = 'rgba(255, 0, 0, 0.3)';
-      ctx.fillRect(0, 0, 200, 200);
 
       const cols = Math.ceil(w / pixelSize);
       const rows = Math.ceil(h / pixelSize);
