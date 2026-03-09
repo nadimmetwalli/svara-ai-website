@@ -86,8 +86,19 @@
     content: '';
     position: absolute;
     inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='52' viewBox='0 0 60 52' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0 L60 17.32 L60 51.96 L30 34.64 L0 51.96 L0 17.32 Z' fill='none' stroke='%23c4a0c8' stroke-width='0.5' opacity='0.25'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='52' viewBox='0 0 60 52' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0 L60 17.32 L60 51.96 L30 34.64 L0 51.96 L0 17.32 Z' fill='none' stroke='%23c4a0c8' stroke-width='0.7' opacity='0.4'/%3E%3C/svg%3E");
     background-size: 60px 52px;
+    pointer-events: none;
+  }
+  .bg-roi-section::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(105deg, transparent 40%, hsl(294 70% 70% / 0.15) 45%, hsl(294 70% 80% / 0.25) 50%, transparent 55%),
+      linear-gradient(250deg, transparent 40%, hsl(294 70% 70% / 0.1) 45%, hsl(294 70% 80% / 0.2) 50%, transparent 55%);
+    background-size: 300% 100%, 250% 100%;
+    animation: roi-shimmer-1 8s ease-in-out infinite, roi-shimmer-2 12s ease-in-out 3s infinite;
     pointer-events: none;
   }
   .badge-glow:hover {
