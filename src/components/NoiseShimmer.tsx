@@ -126,7 +126,10 @@ const NoiseShimmer = () => {
     };
 
     animId = requestAnimationFrame(render);
-    return () => cancelAnimationFrame(animId);
+    return () => {
+      cancelAnimationFrame(animId);
+      resizeObserver.disconnect();
+    };
   }, []);
 
   return (
