@@ -106,6 +106,15 @@
   }
 }
 
+@keyframes roi-shimmer-1 {
+  0%, 100% { background-position: -100% 0, 150% 0; }
+  50% { background-position: 200% 0, 150% 0; }
+}
+@keyframes roi-shimmer-2 {
+  0%, 100% { background-position: -100% 0, -100% 0; }
+  50% { background-position: -100% 0, 200% 0; }
+}
+
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
