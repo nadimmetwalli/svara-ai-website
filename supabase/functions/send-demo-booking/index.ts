@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -7,6 +8,8 @@ const corsHeaders = {
 };
 
 const NOTIFICATION_EMAIL = "info@svara-ai.com";
+const RATE_LIMIT_WINDOW_MINUTES = 60;
+const RATE_LIMIT_MAX = 3;
 
 serve(async (req) => {
   if (req.method === "OPTIONS") {
@@ -19,12 +22,16 @@ serve(async (req) => {
       throw new Error("RESEND_API_KEY is not configured");
     }
 
+    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+    const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+    const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey);
+
     const escHtml = (s: string) =>
       s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
 
     const raw = await req.json();
     const name = escHtml(String(raw.name || ""));
-    const email = String(raw.email || "").trim();
+    const email = String(raw.email || "").trim().toLowerCase();
     const phone = escHtml(String(raw.phone || ""));
     const business_type = escHtml(String(raw.business_type || ""));
     const locations = escHtml(String(raw.locations || ""));
@@ -37,6 +44,26 @@ serve(async (req) => {
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
+
+    // Rate limiting: max N submissions per email in the time window
+    const windowStart = new Date(Date.now() - RATE_LIMIT_WINDOW_MINUTES * 60 * 1000).toISOString();
+    const { count, error: countError } = await supabaseAdmin
+      .from("rate_limit_log")
+      .select("*", { count: "exact", head: true })
+      .eq("email", email)
+      .gte("created_at", windowStart);
+
+    if (countError) {
+      console.error("Rate limit check failed:", countError);
+    } else if ((count ?? 0) >= RATE_LIMIT_MAX) {
+      return new Response(
+        JSON.stringify({ error: "Too many submissions. Please try again later." }),
+        { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    // Log this submission for rate limiting
+    await supabaseAdmin.from("rate_limit_log").insert({ email });
 
     // Send notification email to team
     const notificationRes = await fetch("https://api.resend.com/emails", {

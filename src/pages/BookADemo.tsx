@@ -69,6 +69,7 @@ const BookADemo = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<Record<number, string>>({});
   const [contactForm, setContactForm] = useState({ name: "", email: "", phone: "" });
+  const [honeypot, setHoneypot] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -83,6 +84,12 @@ const BookADemo = () => {
   };
 
   const handleSubmit = async () => {
+    // Honeypot check — bots fill hidden fields
+    if (honeypot) {
+      setIsSubmitted(true);
+      return;
+    }
+
     if (!contactForm.name.trim() || !contactForm.email.trim()) {
       toast.error("Please fill in your name and email.");
       return;
@@ -109,10 +116,21 @@ const BookADemo = () => {
       const { error } = await supabase.from("demo_bookings").insert(bookingData);
       if (error) throw error;
 
-      // Send email notification (don't block on failure)
-      supabase.functions.invoke("send-demo-booking", {
+      // Send email notification with rate limiting
+      const { error: fnError } = await supabase.functions.invoke("send-demo-booking", {
         body: bookingData,
-      }).catch((err) => console.error("Email send failed:", err));
+      });
+
+      if (fnError) {
+        // Check if rate limited (edge function returns 429)
+        const msg = fnError.message || "";
+        if (msg.includes("Too many")) {
+          toast.error("Too many submissions. Please try again later.");
+          setIsSubmitting(false);
+          return;
+        }
+        console.error("Email send failed:", fnError);
+      }
 
       setIsSubmitted(true);
       toast.success("Demo booked! We'll be in touch shortly.");
@@ -217,6 +235,17 @@ const BookADemo = () => {
                             value={contactForm.phone}
                             onChange={(e) => setContactForm({ ...contactForm, phone: e.target.value })}
                             className="w-full rounded-xl border border-border bg-secondary px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground"
+                          />
+                          {/* Honeypot — hidden from real users, bots fill it */}
+                          <input
+                            type="text"
+                            name="website"
+                            value={honeypot}
+                            onChange={(e) => setHoneypot(e.target.value)}
+                            autoComplete="off"
+                            tabIndex={-1}
+                            aria-hidden="true"
+                            style={{ position: "absolute", left: "-9999px", opacity: 0, height: 0 }}
                           />
                         </div>
                       </div>
